@@ -35,34 +35,26 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     lpm.rc \
-    charger \
     choice_fn \
+    power_test \
     offmode_charging \
+    detect_key \
     init.recovery.qcom.rc
 
-PRODUCT_PACKAGES += \
-    battery_0.png \
-    battery_1.png \
-    battery_2.png \
-    battery_3.png \
-    battery_4.png \
-    battery_fail.png \
-    battery_full.png
+# Qualcomm scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
+    $(LOCAL_PATH)/configs/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
 
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
-
-PRODUCT_CHARACTERISTICS := nosdcard
-
-PRODUCT_PACKAGES += \
-    libnetcmdiface
 
 # Wifi config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:/system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:/system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/calibration:/system/etc/calibration \
-    $(LOCAL_PATH)/configs/calibration_EMEA:/system/etc/calibration_EMEA
+    $(LOCAL_PATH)/configs/WCNSS_qcom_cfg.ini:/system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
 
 # Audio config
 PRODUCT_COPY_FILES += \
@@ -92,12 +84,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     $(LOCAL_PATH)/keylayout/keypad_8960.kl:system/usr/keylayout/keypad_8960.kl \
     $(LOCAL_PATH)/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
-    $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl \
+    $(LOCAL_PATH)/keylayout/max1187x_touchscreen_0.kl:system/usr/keylayout/max1187x_touchscreen_0.kl \
 
 # Input device config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
-    $(LOCAL_PATH)/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
+    $(LOCAL_PATH)/idc/max1187x_touchscreen_0.idc:system/usr/idc/max1187x_touchscreen_0.idc
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -128,10 +120,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Torch
 
-# Prepatch to fix BT/WiFi bus lockups
-PRODUCT_COPY_FILES += \
-    device/htc/m7-common/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
@@ -144,9 +132,9 @@ PRODUCT_COPY_FILES += \
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
-    NFCEE_ACCESS_PATH := device/htc/m7-common/configs/nfcee_access.xml
+    NFCEE_ACCESS_PATH := device/htc/t6-common/configs/nfcee_access.xml
 else
-    NFCEE_ACCESS_PATH := device/htc/m7-common/configs/nfcee_access_debug.xml
+    NFCEE_ACCESS_PATH := device/htc/t6-common/configs/nfcee_access_debug.xml
 endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
@@ -164,11 +152,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     persist.gps.qmienabled=true \
     ro.baseband.arch=mdm \
-    ro.cam.hw.version=m7 \
-    ro.cwm.forbid_format="/firmware/mdm,/firmware/q6" \
-    ro.cwm.forbid_mount="/firmware/mdm,/firmware/q6" \
-    ro.input.noresample=1 \
+    ro.cam.hw.version=t6 \
+    ro.cwm.forbid_format="/firmware/mdm,/firmware/q6,/firmware/wcnss" \
+    ro.cwm.forbid_mount="/firmware/mdm,/firmware/q6,/firmware/wcnss" \
     ro.opengles.version=196608 \
+    ro.input.noresample=1 \
+    ro.product.wireless=WCN3660 \
+    ro.qualcomm.bt.hci_transport=smd \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000 \
     ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
@@ -187,4 +177,4 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Include non-opensource parts
-$(call inherit-product, vendor/htc/m7-common/m7-common-vendor.mk)
+$(call inherit-product, vendor/htc/t6-common/t6-common-vendor.mk)

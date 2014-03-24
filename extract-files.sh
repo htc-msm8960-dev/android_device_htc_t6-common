@@ -36,7 +36,7 @@ if [ -f ../$DEVICE/device-proprietary-files.txt ]; then
   done
 fi
 
-for FILE in `egrep -v '(^#|^$)' ../m7-common/proprietary-files.txt`; do
+for FILE in `egrep -v '(^#|^$)' ../t6-common/proprietary-files.txt`; do
   echo "Extracting /system/$FILE ..."
   DIR=`dirname $FILE`
   if [ ! -d $BASE/$DIR ]; then
@@ -49,9 +49,9 @@ for FILE in `egrep -v '(^#|^$)' ../m7-common/proprietary-files.txt`; do
   fi
 done
 
-BASE=../../../vendor/$VENDOR/m7-common/proprietary
+BASE=../../../vendor/$VENDOR/t6-common/proprietary
 rm -rf $BASE/*
-for FILE in `egrep -v '(^#|^$)' ../m7-common/common-proprietary-files.txt`; do
+for FILE in `egrep -v '(^#|^$)' ../t6-common/common-proprietary-files.txt`; do
   echo "Extracting /system/$FILE ..."
   DIR=`dirname $FILE`
   if [ ! -d $BASE/$DIR ]; then
@@ -64,4 +64,4 @@ for FILE in `egrep -v '(^#|^$)' ../m7-common/common-proprietary-files.txt`; do
   fi
 done
 
-./../m7-common/setup-makefiles.sh
+./../t6-common/setup-makefiles.sh

@@ -1,4 +1,4 @@
-# Master file for snd_soc_msm tabla 2.0 sound card proj=m7  DMIC DATE= 20130314
+# Master file for snd_soc_msm tabla 2.0 sound card proj=m7  DMIC DATE= 2013030
 # Lists all use case verbs
 SectionUseCase."FM A2DP REC" {
 SectionVerb
@@ -469,7 +469,7 @@ SectionVerb
 	DisableSequence
 		'SLIMBUS_0_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -482,7 +482,7 @@ SectionVerb
 	DisableSequence
 		'AUX_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -495,7 +495,7 @@ SectionVerb
 	DisableSequence
 		'AUX_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -508,7 +508,7 @@ SectionVerb
 	DisableSequence
 		'HDMI Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -521,7 +521,7 @@ SectionVerb
 	DisableSequence
 		'AFE_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -532,7 +532,7 @@ SectionVerb
 
 	DisableSequence
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -545,7 +545,7 @@ SectionVerb
 	DisableSequence
 		'MI2S_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -558,7 +558,7 @@ SectionVerb
 	DisableSequence
 		'MI2S_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	PlaybackPCM  14
+	PlaybackPCM  0
 EndSection
 }
 SectionUseCase."HiFi Lowlatency Rec" {
@@ -572,8 +572,8 @@ SectionVerb
 	DisableSequence
 		'MultiMedia5 Mixer SLIM_0_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -586,8 +586,8 @@ SectionVerb
 	DisableSequence
 		'MultiMedia5 Mixer AUX_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -600,8 +600,8 @@ SectionVerb
 	DisableSequence
 		'MultiMedia5 Mixer AUX_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -612,8 +612,8 @@ SectionVerb
 
 	DisableSequence
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionVerb
@@ -626,8 +626,8 @@ SectionVerb
 	DisableSequence
 		'MultiMedia5 Mixer AFE_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 }
 SectionUseCase."HiFi Rec" {
@@ -1450,7 +1450,7 @@ SectionDevice
 	DisableSequence
 	EndSequence
 
-	ACDBID  14:1
+	ACDBID  0:1
 EndSection
 
 SectionDevice
@@ -2171,7 +2171,7 @@ SectionDevice
 		'RX3 MIX1 INP3':0:IIR1
 		'RX5 MIX1 INP3':0:IIR1
 		'IIR1 Band1':2:0x081263D9 0x36370119 0x02E784C0 0x0B5A1949 0x02D9D7F8
-		'IIR1 Band2':2:0x081263D9 0x3011E313 0x07DC1E52 0x214F1D29 0x0EBA79F9
+		'IIR1 Band2':2:0x081263D9 0x3011E313 0x07DC1E52 0x20F1D29 0x0EBA79F9
 		'IIR1 Band3':2:0x081263D9 0x309F3C9A 0x07D215BF 0x2161F381 0x0F94E904
 		'IIR1 Band4':2:0x081263D9 0x33986476 0x05BA0150 0x21FEF9A6 0x0EB749DD
 		'IIR1 Band5':2:0x081263D9 0x3F902CB2 0x0004C555 0x2215801D 0x0E2DDC7B
@@ -2277,7 +2277,7 @@ SectionDevice
 	DisableSequence
 	EndSequence
 
-	ACDBID  14:1
+	ACDBID  0:1
 EndSection
 
 SectionDevice
@@ -2483,8 +2483,8 @@ SectionModifier
 	DisableSequence
 		'MultiMedia5 Mixer SLIM_0_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2497,8 +2497,8 @@ SectionModifier
 	DisableSequence
 		'MultiMedia5 Mixer AUX_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2511,8 +2511,8 @@ SectionModifier
 	DisableSequence
 		'MultiMedia5 Mixer AUX_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2523,8 +2523,8 @@ SectionModifier
 
 	DisableSequence
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2537,8 +2537,8 @@ SectionModifier
 	DisableSequence
 		'MultiMedia5 Mixer AFE_PCM_TX':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2697,8 +2697,8 @@ SectionModifier
 	DisableSequence
 		'SLIMBUS_0_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2711,8 +2711,8 @@ SectionModifier
 	DisableSequence
 		'AUX_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2725,8 +2725,8 @@ SectionModifier
 	DisableSequence
 		'AUX_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2739,8 +2739,8 @@ SectionModifier
 	DisableSequence
 		'AFE_PCM_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2753,8 +2753,8 @@ SectionModifier
 	DisableSequence
 		'MI2S_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier
@@ -2767,8 +2767,8 @@ SectionModifier
 	DisableSequence
 		'MI2S_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
-	CapturePCM  14
-	PlaybackPCM  14
+	CapturePCM  0
+	PlaybackPCM  0
 EndSection
 
 SectionModifier

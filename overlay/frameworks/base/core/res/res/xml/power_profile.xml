@@ -40,7 +40,7 @@
     <item name="radio.talk">26.7</item>
     <item name="radio.active">26.7</item>
     <item name="gps.on">14</item>
-    <item name="battery.capacity">2300</item>
+    <item name="battery.capacity">3300</item>
     <item name="radio.scanning">23</item>
     <array name="radio.on">
         <value>0.8</value>

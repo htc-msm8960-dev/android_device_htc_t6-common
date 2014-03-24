@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter m7 m7att m7spr m7tmo m7ul m7vzw,$(TARGET_DEVICE)),)
+ifneq ($(filter t6 t6spr t6vzw,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
@@ -33,14 +33,14 @@ FIRMWARE_MDM_IMAGES := \
     sbl1.mbn \
     sbl2.mbn
 
-ifneq ($(filter m7 m7att m7tmo m7ul,$(TARGET_DEVICE)),)
+ifneq ($(filter t6,$(TARGET_DEVICE)),)
 FIRMWARE_MDM_IMAGES += \
     htc61.mbn htc62.mbn htc63.mbn htc64.mbn htc65.mbn \
     htcnvbak.mbn htcrcust.mbn htcsmem.mbn \
     sbl1_82.mbn sbl1_92.mbn sbl1_96.mbn
 endif
 
-ifneq ($(filter m7spr m7vzw,$(TARGET_DEVICE)),)
+ifneq ($(filter t6spr t6vzw,$(TARGET_DEVICE)),)
 FIRMWARE_MDM_IMAGES += \
     htccnv.mbn htcnvmfg.mbn htcuserd.mbn
 endif
@@ -65,5 +65,17 @@ $(FIRMWARE_Q6_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/q6/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_Q6_SYMLINKS)
+
+FIRMWARE_WCNSS_IMAGES := \
+    wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b05 wcnss.mdt
+
+FIRMWARE_WCNSS_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(FIRMWARE_WCNSS_IMAGES)))
+$(FIRMWARE_WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "WCNSS Firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/wcnss/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WCNSS_SYMLINKS)
 
 endif
