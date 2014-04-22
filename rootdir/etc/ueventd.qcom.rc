@@ -136,3 +136,6 @@
 
 # AKM8963
 /dev/akm8963_dev          0660  system       system
+
+# keystore
+/dev/qseecom              0660  system       drmrpc
