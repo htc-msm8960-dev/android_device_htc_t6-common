@@ -44,6 +44,7 @@ BOARD_USES_SEPERATED_VOICE_SPEAKER := true  # use distinct voice speaker use cas
 BOARD_USES_SEPERATED_VOIP := true  # use distinct VOIP use cases
 BOARD_AUDIO_AMPLIFIER := device/htc/t6-common/libaudioamp
 BOARD_HAVE_HTC_CSDCLIENT := true
+BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -73,6 +74,7 @@ BOARD_HARDWARE_CLASS := device/htc/t6-common/cmhw
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
+TARGET_USES_WCNSS_CTRL := true
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
@@ -80,7 +82,7 @@ BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/prima_wlan/parameters/fwpath"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/wlan/parameters/fwpath"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Filesystem
