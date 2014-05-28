@@ -189,4 +189,4 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Include non-opensource parts
-$(call inherit-product, vendor/htc/t6-common/t6-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc/t6-common/t6-common-vendor.mk)
