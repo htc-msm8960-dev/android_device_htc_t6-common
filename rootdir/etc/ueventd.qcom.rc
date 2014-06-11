@@ -75,6 +75,7 @@
 # wifi
 /dev/rfkill               0660  root         wifi
 /dev/wcnss_wlan           0600  system       system
+/dev/wcnss_ctrl           0660  system       system
 
 #permissions for video
 /dev/msm_vidc_reg         0660  system       audio

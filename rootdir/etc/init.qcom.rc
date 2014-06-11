@@ -228,8 +228,6 @@ on post-fs-data
 
     # prepare kernel for wifi module
     setprop ro.product.wireless WCN3660
-    #write /dev/wcnss_wlan 1
-    #write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
     # We will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
@@ -389,9 +387,10 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet graphics
 
-service qcom-wifi-sh /system/bin/sh /system/etc/init.qcom.wifi.sh
+service wcnss-service /system/bin/wcnss_service
     class main
-    user root
+    user system
+    group system wifi qcom_diag radio
     oneshot
 
 service qmuxd /system/bin/qmuxd
