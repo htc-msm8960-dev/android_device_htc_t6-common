@@ -1,13 +1,9 @@
 # Executables
 bin/akmd
-bin/efsks
 bin/hci_qcomm_init
 bin/ks
 bin/mm-qcamera-daemon
-bin/netmgrd
 bin/mpdecision
-bin/qcks
-bin/qmuxd
 bin/thermald
 
 # Configuration files
@@ -149,6 +145,12 @@ lib/libwriteback.so
 etc/firmware/ILP0100_IPM_Code_out.bin
 etc/firmware/ILP0100_IPM_Data_out.bin
 
+# FingerPrint Service
+bin/vcsFirmwareVersion
+bin/vcsFPService
+bin/vcsSimpleCapture
+bin/vcsSimpleEnrollMatch
+
 # GPS
 lib/libgeofence.so
 lib/libloc_api_v02.so
@@ -173,8 +175,6 @@ vendor/lib/libRSDriver_adreno.so
 vendor/lib/libsc-a3xx.so
 
 # Graphics firmware
-# Touchscreen firmware
-etc/firmware/max11876.bin
 etc/firmware/a300_pfp.fw
 etc/firmware/a300_pm4.fw
 etc/firmware/vidc.b00
@@ -214,29 +214,11 @@ etc/firmware/tzapps.b02
 etc/firmware/tzapps.b03
 etc/firmware/tzapps.mdt
 
+# Touchscreen firmware
+etc/firmware/max11876.bin
+
 # Qualcomm extra
 vendor/lib/libqc-opt.so
-
-# Qualcomm/HTC common libs
-lib/libdiag.so
-lib/libdsi_netctrl.so
-lib/libdsutils.so
-lib/libidl.so
-lib/libqcci_legacy.so
-lib/libqdi.so
-lib/libqdp.so
-lib/libqmi.so
-lib/libqmi_cci.so
-lib/libqmi_client_qmux.so
-lib/libqmi_common_so.so
-lib/libqmi_csi.so
-lib/libqmi_encdec.so
-lib/libqmiservices.so
-
-# Radio
-lib/libnetmgr.so
-lib/libril-qc-qmi-1.so
-lib/libril-qcril-hook-oem.so
 
 # Sensors
 lib/hw/sensors.default.so
@@ -250,7 +232,3 @@ lib/libmpl_jni.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
-
-# WLAN firmware
-etc/firmware/wlan/prima/WCNSS_cfg.dat
-etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
