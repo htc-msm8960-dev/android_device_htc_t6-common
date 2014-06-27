@@ -473,18 +473,18 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     oneshot
 
 service wifi-crda /system/bin/sh /system/etc/init.crda.sh
-   class late_start
-   user root
-   disabled
-   oneshot
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service vcsFPService /system/bin/vcsFPService
+    class late_start
+    user root
+    group val_fp
+    disabled
 
 # Property triggers begin here
-
-on property:bluetooth.hciattach=true
-    start hciattach
-
-on property:bluetooth.hciattach=false
-    setprop bluetooth.status off
 
 on property:bluetooth.hciattach=true
     start hciattach
@@ -500,12 +500,6 @@ on property:init.svc.bootanim=stopped
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
-
-service vcsFPService /system/bin/vcsFPService
-	class late_start
-	user root
-	group val_fp
-	disabled
 
 on property:ro.device.fp=true
     start vcsFPService
