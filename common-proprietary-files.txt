@@ -150,6 +150,10 @@ bin/vcsFirmwareVersion
 bin/vcsFPService
 bin/vcsSimpleCapture
 bin/vcsSimpleEnrollMatch
+vendor/lib/libfpsvc.so
+vendor/lib/libvcsCfgData.so
+vendor/lib/libvcsfp.so
+vendor/lib/libvcsFPClient.so
 
 # GPS
 lib/libgeofence.so
