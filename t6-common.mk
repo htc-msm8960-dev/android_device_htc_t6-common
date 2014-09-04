@@ -40,7 +40,9 @@ PRODUCT_PACKAGES += \
     power_test \
     offmode_charging \
     detect_key \
+    chargeled \
     init.recovery.qcom.rc
+
 # Recovery offmode charging images
 $(call inherit-product, device/htc/t6-common/recovery/res/offmode_charging_images.mk)
 
