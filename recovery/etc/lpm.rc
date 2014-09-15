@@ -34,7 +34,7 @@ on init
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
 
 on boot
-    # disable 3 CPUs to prevent heat for M7
+    # disable 3 CPUs to prevent heat for T6
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
@@ -45,10 +45,7 @@ on boot
     start choice_fn
 
 service choice_fn /sbin/choice_fn
-    oneshot
-
-on property:sys.powerctl=*
-   powerctl ${sys.powerctl}
+    disabled
 
 service detect_key /sbin/detect_key
     disabled
@@ -64,9 +61,6 @@ service power_test /sbin/power_test
 service ueventd /sbin/ueventd
     critical
 
-service healthd /sbin/healthd -n
-    critical
-
 service adbd /sbin/adbd recovery
     disabled
 
@@ -77,4 +71,3 @@ on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0
     restart adbd
     write /sys/class/android_usb/android0/enable 1
-
