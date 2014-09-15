@@ -39,12 +39,11 @@ PRODUCT_PACKAGES += \
     choice_fn \
     power_test \
     offmode_charging \
+    offmode_charging_res_images \
+    offmode_charging_warn_res_images \
     detect_key \
     chargeled \
     init.recovery.qcom.rc
-
-# Recovery offmode charging images
-$(call inherit-product, device/htc/t6-common/recovery/res/offmode_charging_images.mk)
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
