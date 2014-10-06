@@ -212,11 +212,6 @@ etc/firmware/hcheck.b02
 etc/firmware/hcheck.b03
 etc/firmware/hcheck.mdt
 etc/firmware/lscbuffer_rev2.bin
-etc/firmware/tzapps.b00
-etc/firmware/tzapps.b01
-etc/firmware/tzapps.b02
-etc/firmware/tzapps.b03
-etc/firmware/tzapps.mdt
 
 # Touchscreen firmware
 etc/firmware/max11876.bin
@@ -233,6 +228,21 @@ lib/libmpl.so
 lib/libmpl_jni.so
 
 # Widevine
+bin/qseecomd
+lib/libdrmdecrypt.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libdrmfs.so
+vendor/lib/libdrmtime.so
+vendor/lib/liboemcrypto.so
 vendor/lib/libQSEEComAPI.so
+vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/mediadrm/libwvdrmengine.so
+
+# Widevine firmware
+etc/firmware/tzapps.b00
+etc/firmware/tzapps.b01
+etc/firmware/tzapps.b02
+etc/firmware/tzapps.b03
+etc/firmware/tzapps.mdt

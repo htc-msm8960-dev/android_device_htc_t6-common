@@ -398,6 +398,11 @@ service qmuxd /system/bin/qmuxd
     user radio
     group radio audio gps
 
+service qseecomd /system/bin/qseecomd
+    class main
+    user system
+    group system drm
+
 service setup_fs /system/bin/setup_fs mmcblk0p41
     class core
     user root
