@@ -169,8 +169,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.input.noresample=1 \
     ro.product.wireless=WCN3660 \
     ro.qualcomm.bt.hci_transport=smd \
-    ro.telephony.call_ring.multiple=false \
-    ro.telephony.call_ring.delay=3000 \
     ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
 
 # Set build date
