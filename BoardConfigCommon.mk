@@ -27,7 +27,9 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/htc/t6-common/include
+LOCAL_PATH := device/htc/t6-common
+
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
@@ -48,26 +50,47 @@ BOARD_HAVE_HTC_CSDCLIENT := true
 QCOM_FM_ENABLED := true
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/t6-common/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 USE_DEVICE_SPECIFIC_CAMERA := true
 
+# Charge mode
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
+
+# CMHW
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
+
+# Filesystem
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2550136832
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
+
 # Graphics
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 HAVE_ADRENO_SOURCE := false
+
+# Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
+BOARD_RECOVERY_SWIPE := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+TARGET_RECOVERY_DEVICE_DIRS += $(LOCAL_PATH)
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-
-# Tuning
-BOARD_HARDWARE_CLASS := device/htc/t6-common/cmhw
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
@@ -82,53 +105,6 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/wlan/parameters/fwpath"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-
-# Filesystem
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2550136832
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
-BOARD_FLASH_BLOCK_SIZE := 131072
-
-# dev:        size     erasesize name
-# mmcblk0p21: 000ffa00 00000200 "misc"
-# mmcblk0p38: 00fffe00 00000200 "recovery"
-# mmcblk0p37: 01000000 00000200 "boot"
-# mmcblk0p39: 98000000 00000200 "system"
-# mmcblk0p28: 00140200 00000200 "local"
-# mmcblk0p41: 3ffffe00 00000200 "cache"
-# mmcblk0p42: 640000000 00000200 "userdata"
-# mmcblk0p24: 01400000 00000200 "devlog"
-# mmcblk0p26: 00040000 00000200 "pdata"
-# mmcblk0p29: 00010000 00000200 "extra"
-# mmcblk0p34: 05000000 00000200 "radio"
-# mmcblk0p16: 03c00400 00000200 "adsp"
-# mmcblk0p15: 00100000 00000200 "dsps"
-# mmcblk0p18: 00500000 00000200 "wcnss"
-# mmcblk0p17: 007ffa00 00000200 "radio_config"
-# mmcblk0p22: 00400000 00000200 "modem_st1"
-# mmcblk0p23: 00400000 00000200 "modem_st2"
-# mmcblk0p31: 00040000 00000200 "skylink"
-# mmcblk0p32: 01900000 00000200 "carrier"
-# mmcblk0p30: 00100000 00000200 "cdma_record"
-# mmcblk0p20: 016ffc00 00000200 "reserve_1"
-# mmcblk0p35: 02fffc00 00000200 "reserve_2"
-# mmcblk0p36: 05fffc00 00000200 "reserve_3"
-# mmcblk0p40: 03fffa00 00000200 "reserve_4"
-# mmcblk0p33: 04729a00 00000200 "reserve"
-
-# Custom Recovery
-TARGET_RECOVERY_FSTAB := device/htc/t6-common/rootdir/etc/fstab.qcom
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
-TARGET_RECOVERY_DEVICE_DIRS += device/htc/t6-common
-
-# Charge mode
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # inherit from the proprietary version
 -include vendor/htc/t6-common/BoardConfigVendor.mk
