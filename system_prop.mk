@@ -26,11 +26,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.baseband.arch=mdm
 
-# Recovery
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.forbid_format="/firmware/mdm,/firmware/q6,/firmware/wcnss" \
-    ro.cwm.forbid_mount="/firmware/mdm,/firmware/q6,/firmware/wcnss"
-
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
