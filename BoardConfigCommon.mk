@@ -47,6 +47,7 @@ BOARD_USES_SEPERATED_VOICE_SPEAKER := true  # use distinct voice speaker use cas
 BOARD_USES_SEPERATED_VOIP := true  # use distinct VOIP use cases
 BOARD_AUDIO_AMPLIFIER := device/htc/t6-common/libaudioamp
 BOARD_HAVE_HTC_CSDCLIENT := true
+AUDIO_FEATURE_ENABLED_FM := true
 QCOM_FM_ENABLED := true
 
 # Bluetooth
