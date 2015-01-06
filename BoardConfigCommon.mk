@@ -97,6 +97,7 @@ BOARD_SEPOLICY_DIRS += \
     device/htc/t6-common/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+    akmd.te \
     cir_fw_update.te
 
 # USB
