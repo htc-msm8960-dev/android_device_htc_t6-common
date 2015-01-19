@@ -29,7 +29,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
-
-# WiFi
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.product.wireless=WCN3660

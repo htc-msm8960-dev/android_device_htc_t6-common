@@ -116,8 +116,7 @@ PRODUCT_COPY_FILES += \
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/configs/init.crda.sh:/system/etc/init.crda.sh
+    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh
 
 # Ramdisk
 PRODUCT_PACKAGES += \
