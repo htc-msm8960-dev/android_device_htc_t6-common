@@ -305,6 +305,8 @@ on boot
     # Change owner and group for media server and surface flinger
     chown system system /sys/devices/virtual/graphics/fb1/format_3d
     chown system system /sys/devices/virtual/graphics/fb1/hpd
+    chown system system /sys/devices/virtual/graphics/fb1/product_description
+    chown system system /sys/devices/virtual/graphics/fb1/vendor_name
 
     chown media system /sys/camera_attrs/videochat
 
@@ -486,7 +488,7 @@ on property:bluetooth.hciattach=false
 
 on property:init.svc.bootanim=stopped
     # Allow QMUX daemon to assign port open wait time
-    chown radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     # Init modem
     write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
