@@ -1,3 +1,7 @@
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cam.hw.version=t6
