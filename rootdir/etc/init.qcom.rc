@@ -396,12 +396,6 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
-service setup_fs /system/bin/setup_fs mmcblk0p41
-    class core
-    user root
-    group root
-    oneshot
-
 service thermald /system/bin/thermald
     class main
     user root
