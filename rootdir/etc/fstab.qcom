@@ -16,5 +16,5 @@
 /dev/block/platform/msm_sdcc.1/by-name/wcnss		/firmware/wcnss	vfat	ro,fmask=0000,dmask=0000,shortname=lower,context=u:object_r:firmware_file:s0		wait
 
 # External Storage Devices
-/devices/platform/msm_sdcc.3/mmc_host*	auto	auto	defaults	voldmanaged=sdcard2:auto,noemulatedsd
+/devices/platform/msm_sdcc.3/mmc_host*	auto	auto	defaults	voldmanaged=sdcard2:auto,encryptable=userdata
 /devices/platform/msm_hsusb_host*	auto	auto	defaults	voldmanaged=usbdisk:auto
