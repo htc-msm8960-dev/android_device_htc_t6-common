@@ -65,6 +65,7 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
+    Snap \
     libcamera_shim
 
 # GPS
