@@ -36,7 +36,7 @@
 /dev/smd4                 0660   system     system
 /dev/smd3                 0660   bluetooth  bluetooth
 /dev/smd2                 0660   bluetooth  bluetooth
-/dev/smd7                 0660   bluetooth  bluetooth
+/dev/smd7                 0640   radio      radio
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
 /dev/smdcntl2             0640   radio      radio
@@ -86,6 +86,7 @@
 /dev/msm_vidc_dec         0660  system       audio
 /dev/msm_vidc_dec_sec     0660  system       audio
 /dev/msm_vidc_enc         0660  system       audio
+/dev/msm_vidc_enc_sec     0660  system       audio
 #permissions for audio
 /dev/msm_amrnb            0660  system       audio
 /dev/msm_amrwb            0660  system       audio
