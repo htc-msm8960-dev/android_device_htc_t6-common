@@ -29,11 +29,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.gps.set_privacy=1 \
-    persist.gps.qc_nlp_in_use=0 \
-    ro.qc.sdk.izat.premium_enabled=0 \
-    ro.qc.sdk.izat.service_mask=0x4 \
-    ro.gps.agps_provider=1
+    ro.gps.set_privacy=1
 
 # Input
 PRODUCT_PROPERTY_OVERRIDES += \
