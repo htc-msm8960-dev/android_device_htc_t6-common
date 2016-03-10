@@ -11,6 +11,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
     ro.sf.lcd_density=400
 
+# GPS
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gps.set_privacy=1
+
 # Input
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.input.noresample=1
