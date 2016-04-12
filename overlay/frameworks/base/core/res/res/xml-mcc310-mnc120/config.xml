@@ -18,7 +18,13 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-<!-- An Array of "[Connection name],[ConnectivityManager.TYPE_xxxx],
+    <!-- MMS user agent string -->
+    <string name="config_mms_user_agent" translatable="false">HTC0P3P7  SPRINT</string>
+
+    <!-- MMS user agent prolfile url -->
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://device.sprintpcs.com/HTC/HTC0P3P7-Chameleon/3026515.rdf</string>
+
+    <!-- An Array of "[Connection name],[ConnectivityManager.TYPE_xxxx],
          [associated radio-type],[priority],[restoral-timer(ms)],[dependencyMet]  -->
     <!-- the 5th element "resore-time" indicates the number of milliseconds to delay
          before automatically restore the default connection.  Set -1 if the connection
