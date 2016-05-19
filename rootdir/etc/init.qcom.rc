@@ -350,6 +350,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
+    group root readproc
     disabled
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
