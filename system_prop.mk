@@ -2,6 +2,15 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-swap=false
 
+# Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.audio.fluence.mode=endfire \
+    persist.audio.handset.mic=digital \
+    persist.audio.speaker.location=high \
+    persist.audio.vr.enable=false \
+    qcom.hw.aac.encoder=true \
+    ro.qc.sdk.audio.fluencetype=fluence
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cam.hw.version=t6
