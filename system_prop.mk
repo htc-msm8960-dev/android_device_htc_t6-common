@@ -11,6 +11,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
     use.dedicated.device.for.voip=true
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=smd
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cam.hw.version=t6
