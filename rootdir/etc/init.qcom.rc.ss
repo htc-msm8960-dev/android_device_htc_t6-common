@@ -340,6 +340,9 @@ on boot
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 40
 
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
 
