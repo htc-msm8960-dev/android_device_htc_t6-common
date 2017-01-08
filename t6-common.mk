@@ -60,6 +60,9 @@ PRODUCT_PACKAGES += \
     Snap \
     libcamera_shim
 
+# Charger
+WITH_CM_CHARGER := false
+
 # Gello
 PRODUCT_PACKAGES += \
     Gello
