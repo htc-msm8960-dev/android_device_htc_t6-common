@@ -155,6 +155,7 @@ lib/libvcsCfgData.so
 lib/libvcsFPClient.so
 lib/libvcsfp.so
 vendor/lib/libfpsvc.so
+validity/ValidityPersistentData
 
 # GPS
 lib/libgeofence.so
