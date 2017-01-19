@@ -400,10 +400,10 @@ service vcsSimpleEnrollMatch /system/bin/vcsSimpleEnrollMatch
     user system
     group system	
 
-service vcsSimpleCapture /system/bin/vcsSimpleCapture
-    class late_start
-    user system
-    group system
+# service vcsSimpleCapture /system/bin/vcsSimpleCapture
+#     class late_start
+#     user system
+#     group system
 	
 # WiFi
 service p2p_supplicant /system/bin/wpa_supplicant \
