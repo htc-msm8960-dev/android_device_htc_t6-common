@@ -44,3 +44,4 @@ allow vcsFPService firmware_file:file r_file_perms;
 allow ueventd vcsFPService_data_file:chr_file create_file_perms;
 allow tee vcsFPService_data_file:dir create_dir_perms;
 allow tee vcsFPService_data_file:file create_file_perms;
+allow vcsFPService toolbox_exec:file { execute execute_no_trans read open getattr };
