@@ -289,12 +289,22 @@
     </path>
 
     <!-- FM Digital Radio -->
+    <path name="play-fm">
+        <ctl name="SLIMBUS_0_RX Port Mixer INTERNAL_FM_TX" value="1" />
+        <ctl name="SLIMBUS_DL_HL Switch" value="1" />
+    </path>
+
     <path name="capture-fm">
         <ctl name="SLIMBUS_0_RX Port Mixer INTERNAL_FM_TX" value="1" />
         <ctl name="SLIMBUS_DL_HL Switch" value="1" />
     </path>
 
     <!-- FM Digital RadioSpeaker FM -->
+    <path name="play-fm speaker">
+        <ctl name="MI2S_RX Port Mixer INTERNAL_FM_TX" value="1" />
+        <ctl name="MI2S_RX_DL_HL Switch" value="1" />
+    </path>
+
     <path name="capture-fm speaker">
         <ctl name="MI2S_RX Port Mixer INTERNAL_FM_TX" value="1" />
         <ctl name="MI2S_RX_DL_HL Switch" value="1" />
