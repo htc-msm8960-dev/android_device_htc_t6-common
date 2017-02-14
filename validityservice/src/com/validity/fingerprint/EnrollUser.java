@@ -21,7 +21,7 @@ package com.validity.fingerprint;
 public class EnrollUser {
     public int fingerIndex;
     public int mode;
-    public String userId;
+    public String userId = "HTC_DEFAULT_USER_0";
 
     public EnrollUser() {
         mode = 1;

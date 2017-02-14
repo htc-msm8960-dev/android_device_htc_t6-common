@@ -28,8 +28,8 @@ public class ValidityServiceStarter extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        VLog.v("onCreate");
         Intent serviceintent = new Intent(this, ValidityService.class);
+		serviceintent.setPackage("com.validity.fingerprint");
         startService(serviceintent);
     }
 
