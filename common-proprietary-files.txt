@@ -68,6 +68,7 @@ etc/agps_rm
 etc/hldm.bin
 etc/hltof.bin
 etc/hltrd.bin
+etc/res_ctrl.conf
 
 # Audio
 lib/libacdbloader.so
