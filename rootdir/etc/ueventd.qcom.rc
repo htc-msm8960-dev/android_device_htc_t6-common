@@ -145,3 +145,8 @@
 
 # keystore
 /dev/qseecom              0660  system       drmrpc
+
+# Fingerprint
+/dev/vfsspi               0660  system       system
+/dev/validity/*               0660  system       system
+/dev/htc_fingerprint               0660  system       system

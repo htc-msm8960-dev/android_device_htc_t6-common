@@ -146,6 +146,17 @@ lib/libwriteback.so
 etc/firmware/ILP0100_IPM_Code_out.bin
 etc/firmware/ILP0100_IPM_Data_out.bin
 
+# Fingerprint
+bin/vcsFPService
+bin/vcsFirmwareVersion
+bin/vcsSimpleCapture
+bin/vcsSimpleEnrollMatch
+lib/libvcsCfgData.so
+lib/libvcsFPClient.so
+lib/libvcsfp.so
+vendor/lib/libfpsvc.so
+validity/ValidityPersistentData
+
 # GPS
 lib/libgeofence.so
 lib/libloc_api_v02.so
