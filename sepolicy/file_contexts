@@ -22,6 +22,10 @@
 # CMHW
 /sys/devices/virtual/timed_output/vibrator/voltage_level   u:object_r:vibeamp_sysfs:s0
 
+
+# Encryption
+/dev/block/platform/msm_sdcc\.1/by-name/extra  u:object_r:metadata_block_device:s0
+
 # Fingerprint
 #/system/bin/vcsFPService        u:object_r:vcs_exec:s0
 /data/validity(/.*)?            u:object_r:vcs_data_file:s0
@@ -63,3 +67,9 @@
 /dev/lightsensor                u:object_r:sensors_device:s0
 /dev/timerirq                   u:object_r:sensors_device:s0
 /system/bin/akmd                u:object_r:akmd_exec:s0
+
+# Surfaceflinger
+/sys/devices/virtual/graphics/fb1/format_3d            -- u:object_r:surfaceflinger_sysfs:s0
+/sys/devices/virtual/graphics/fb1/hpd                  -- u:object_r:surfaceflinger_sysfs:s0
+/sys/devices/virtual/graphics/fb1/product_description  -- u:object_r:surfaceflinger_sysfs:s0
+/sys/devices/virtual/graphics/fb1/vendor_name          -- u:object_r:surfaceflinger_sysfs:s0
