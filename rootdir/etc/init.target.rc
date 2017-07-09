@@ -1,0 +1,6 @@
+on property:sys.boot_completed=1
+
+service kickstart /system/bin/sh /init.tartget.sh
+    class core
+    user root
+    oneshot
