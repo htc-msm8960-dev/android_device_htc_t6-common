@@ -155,3 +155,7 @@ PRODUCT_COPY_FILES += \
 
 # Include non-opensource parts
 $(call inherit-product-if-exists, vendor/htc/t6-common/t6-common-vendor.mk)
+
+# Variant linking script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/releasetools/variant_script.sh:install/bin/variant_script.sh
