@@ -10,6 +10,8 @@ case $modelid in
     "0P3P70000") variant="spr" ;;
     "0P3P30000") variant="dug" ;;
     "0P3P20000") variant="dwg" ;;
+    "0P3P52000") variant="gsm"; tw="true" ;;
+	"0P3P51000") variant="gsm"; eu="true" ;;
     *)           variant="gsm" ;;
 esac
 
