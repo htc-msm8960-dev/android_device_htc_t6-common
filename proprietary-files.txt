@@ -13,6 +13,10 @@ blobs/spr/bin/efsks
 blobs/spr/bin/netmgrd
 blobs/spr/bin/qcks
 blobs/spr/bin/qmuxd
+blobs/tl/bin/efsks
+blobs/tl/bin/netmgrd
+blobs/tl/bin/qcks
+blobs/tl/bin/qmuxd
 
 # Qualcomm/HTC common libs
 blobs/gsm/lib/libdiag.so
@@ -58,6 +62,20 @@ blobs/spr/lib/libqmi_csi.so
 blobs/spr/lib/libqmi_encdec.so
 blobs/spr/lib/libqmiservices.so
 blobs/spr/lib/libtime_genoff.so
+blobs/tl/lib/libdiag.so
+blobs/tl/lib/libdsi_netctrl.so
+blobs/tl/lib/libdsutils.so
+blobs/tl/lib/libidl.so
+blobs/tl/lib/libqcci_legacy.so
+blobs/tl/lib/libqdi.so
+blobs/tl/lib/libqdp.so
+blobs/tl/lib/libqmi.so
+blobs/tl/lib/libqmi_cci.so
+blobs/tl/lib/libqmi_client_qmux.so
+blobs/tl/lib/libqmi_common_so.so
+blobs/tl/lib/libqmi_csi.so
+blobs/tl/lib/libqmi_encdec.so
+blobs/tl/lib/libqmiservices.so
 
 # Radio
 blobs/gsm/lib/libnetmgr.so
@@ -69,3 +87,6 @@ blobs/vzw/lib/libril-qcril-hook-oem.so
 blobs/spr/lib/libnetmgr.so
 blobs/spr/lib/libril-qc-qmi-1.so
 blobs/spr/lib/libril-qcril-hook-oem.so
+blobs/tl/lib/libnetmgr.so
+blobs/tl/lib/libril-qc-qmi-1.so
+blobs/tl/lib/libril-qcril-hook-oem.so
