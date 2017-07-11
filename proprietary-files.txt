@@ -57,6 +57,7 @@ blobs/spr/lib/libqmi_common_so.so
 blobs/spr/lib/libqmi_csi.so
 blobs/spr/lib/libqmi_encdec.so
 blobs/spr/lib/libqmiservices.so
+blobs/spr/liblibtime_genoff.so
 
 # Radio
 blobs/gsm/lib/libnetmgr.so
