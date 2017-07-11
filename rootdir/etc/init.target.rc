@@ -1,6 +1,6 @@
 on boot
 
-service kickstart /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/ -u
+service kickstartgsm /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/ -u
     class core
     user root
     oneshot
@@ -12,12 +12,20 @@ service kickstartcdma /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config
     disabled
 
 on property:ro.product.device=t6vzw
-    stop kickstart
+    stop kickstartgsm
     start kickstartcdma
 
 on property:ro.product.device=t6spr
-    stop kickstart
+    stop kickstartgsm
+    start kickstartcdma
+
+on property:ro.product.device=t6dwg
+    stop kickstartgsm
+    start kickstartcdma
+
+on property:ro.product.device=t6dug
+    stop kickstartgsm
     start kickstartcdma
 
 #on property:ro.product.device=t6
-#    stop kickstart
+#    stop kickstartgsm
