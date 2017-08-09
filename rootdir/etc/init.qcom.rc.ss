@@ -315,6 +315,15 @@ on boot
     chown system system /sys/class/power_supply/battery/navigation
     chmod 0220 /sys/class/power_supply/battery/navigation
 
+	# Fingerprint
+    mkdir /dev/validity 0770 system system
+    mkdir /data/validity 0770 system system
+
+    # Fingerprint_sensor
+    chown system system /sys/android_fingerprint/fpmount
+    chown system system /sys/android_fingerprint/fpr
+    # chown system radio /sys/class/fingerprint/fingerprint/type_check
+	
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
 
@@ -330,6 +339,11 @@ service cir_fw_update /system/bin/cir_fw_update -u cir.img
     user root
     group root
     oneshot
+	
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
 
 service fm_dl /system/bin/setprop hw.fm.init 1
     class late_start
@@ -373,7 +387,27 @@ service thermald /system/bin/thermald
     class main
     user root
     group root
+	
+service vcsFPService /system/bin/vcsFPService
+    class late_start
+    user system
+    group system
 
+# service vcsFirmwareVersion /system/bin/vcsFirmwareVersion
+#     class late_start
+#     user system
+#     group system
+
+# service vcsSimpleEnrollMatch /system/bin/vcsSimpleEnrollMatch
+#     class late_start
+#     user system
+#     group system	
+
+# service vcsSimpleCapture /system/bin/vcsSimpleCapture
+#     class late_start
+#     user system
+#     group system
+	
 # WiFi
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
