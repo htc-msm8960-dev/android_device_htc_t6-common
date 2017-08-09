@@ -322,7 +322,6 @@ on boot
     # Fingerprint_sensor
     chown system system /sys/android_fingerprint/fpmount
     chown system system /sys/android_fingerprint/fpr
-    # chown system radio /sys/class/fingerprint/fingerprint/type_check
 	
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
@@ -392,21 +391,6 @@ service vcsFPService /system/bin/vcsFPService
     class late_start
     user system
     group system
-
-# service vcsFirmwareVersion /system/bin/vcsFirmwareVersion
-#     class late_start
-#     user system
-#     group system
-
-# service vcsSimpleEnrollMatch /system/bin/vcsSimpleEnrollMatch
-#     class late_start
-#     user system
-#     group system	
-
-# service vcsSimpleCapture /system/bin/vcsSimpleCapture
-#     class late_start
-#     user system
-#     group system
 	
 # WiFi
 service p2p_supplicant /system/bin/wpa_supplicant \
