@@ -395,7 +395,6 @@ service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
     group bluetooth net_bt_admin system
     disabled
-    seclabel u:r:bluetooth_loader:s0
     oneshot
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
