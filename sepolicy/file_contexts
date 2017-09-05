@@ -22,7 +22,6 @@
 # CMHW
 /sys/devices/virtual/timed_output/vibrator/voltage_level   u:object_r:vibeamp_sysfs:s0
 
-
 # Encryption
 /dev/block/platform/msm_sdcc\.1/by-name/extra  u:object_r:metadata_block_device:s0
 
@@ -92,3 +91,6 @@
 /sys/devices/virtual/graphics/fb1/hpd                  -- u:object_r:surfaceflinger_sysfs:s0
 /sys/devices/virtual/graphics/fb1/product_description  -- u:object_r:surfaceflinger_sysfs:s0
 /sys/devices/virtual/graphics/fb1/vendor_name          -- u:object_r:surfaceflinger_sysfs:s0
+
+# ZRAM
+/dev/block/zram0                                                                  u:object_r:swap_block_device:s0
