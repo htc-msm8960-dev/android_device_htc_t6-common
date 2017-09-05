@@ -185,6 +185,10 @@ PRODUCT_PACKAGES += \
     init.target.sh \
     ueventd.qcom.rc
 
+# USB HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
