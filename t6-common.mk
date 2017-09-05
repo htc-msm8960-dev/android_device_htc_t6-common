@@ -68,15 +68,22 @@ PRODUCT_PACKAGES += \
     libcamera_shim
 
 # Camera HIDL interfaces
- PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
      android.hardware.camera.provider@2.4-impl \
      camera.device@3.2-impl
 
 # Charger
 WITH_CM_CHARGER := false
 
+# Display HIDL interfaces
+PRODUCT_PACKAGES += \
+     android.hardware.graphics.allocator@2.0-impl \
+     android.hardware.graphics.composer@2.1-impl \
+     android.hardware.graphics.mapper@2.0-impl \
+     android.hardware.memtrack@1.0-impl
+
 # Fingerprint
- PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
      fingerprintd \
      fingerprint.msm8960 \
      ValidityService \
