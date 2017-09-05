@@ -7,7 +7,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 
 on init
-    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libril_qsc.so|libril_qscshim.so"
+    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libril_qsc.so|libril_qscshim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so"
 
     symlink /sdcard /storage/sdcard0
 
@@ -322,7 +322,13 @@ on boot
     # Fingerprint_sensor
     chown system system /sys/android_fingerprint/fpmount
     chown system system /sys/android_fingerprint/fpr
-	
+
+    chown system system /dev/htc_fingerprint
+    chmod 0660 /dev/htc_fingerprint
+    restorecon_recursive /dev/htc_fingerprint
+    restorecon_recursive /dev/validity
+    restorecon_recursive /dev/vfsspi
+
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
 
@@ -389,7 +395,7 @@ service thermald /system/bin/thermald
 
 service vcsFPService /system/bin/vcsFPService
     class late_start
-    user system
+    user root
     group system
 
 # WiFi

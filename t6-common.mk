@@ -69,7 +69,8 @@ WITH_CM_CHARGER := false
  PRODUCT_PACKAGES += \
      fingerprintd \
      fingerprint.msm8960 \
-     ValidityService
+     ValidityService \
+	 libvcsfp_shim
 
 # Gello
 PRODUCT_PACKAGES += \
