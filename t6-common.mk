@@ -50,6 +50,11 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 PRODUCT_PACKAGES += \
     audio_amplifier.msm8960
 
+# Audio HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
@@ -69,25 +74,25 @@ PRODUCT_PACKAGES += \
 
 # Camera HIDL interfaces
 PRODUCT_PACKAGES += \
-     android.hardware.camera.provider@2.4-impl \
-     camera.device@3.2-impl
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl
 
 # Charger
 WITH_CM_CHARGER := false
 
 # Display HIDL interfaces
 PRODUCT_PACKAGES += \
-     android.hardware.graphics.allocator@2.0-impl \
-     android.hardware.graphics.composer@2.1-impl \
-     android.hardware.graphics.mapper@2.0-impl \
-     android.hardware.memtrack@1.0-impl
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-     fingerprintd \
-     fingerprint.msm8960 \
-     ValidityService \
-	 libvcsfp_shim
+    fingerprintd \
+    fingerprint.msm8960 \
+    ValidityService \
+	libvcsfp_shim
 
 # Gello
 PRODUCT_PACKAGES += \
