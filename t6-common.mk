@@ -80,13 +80,6 @@ PRODUCT_PACKAGES += \
 # Charger
 WITH_CM_CHARGER := false
 
-# Display HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.composer@2.1-impl \
-    android.hardware.graphics.mapper@2.0-impl \
-    android.hardware.memtrack@1.0-impl
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
@@ -160,7 +153,7 @@ PRODUCT_COPY_FILES += \
 
 # OMX properties
  PRODUCT_PROPERTY_OVERRIDES += \
-     persist.media.treble_omx=false
+    persist.media.treble_omx=false
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
