@@ -114,6 +114,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# NFC HAL
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl
+
 # NFC
 PRODUCT_PACKAGES += \
     nfc.msm8960 \
