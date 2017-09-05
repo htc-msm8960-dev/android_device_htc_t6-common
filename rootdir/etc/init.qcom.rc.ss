@@ -359,7 +359,7 @@ service fm_dl /system/bin/setprop hw.fm.init 1
 
 service netmgrd /system/bin/netmgrd
     class core
-    group radio system
+    group radio system wakelock
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     user bluetooth
@@ -382,7 +382,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 service qmuxd /system/bin/qmuxd
     class core
     user radio
-    group radio audio gps
+    group radio audio gps wakelock
 
 service qseecomd /system/bin/qseecomd
     class core
