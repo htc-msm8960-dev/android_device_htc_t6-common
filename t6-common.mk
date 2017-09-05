@@ -142,6 +142,10 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
+# OMX properties
+ PRODUCT_PROPERTY_OVERRIDES += \
+     persist.media.treble_omx=false
+
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh
