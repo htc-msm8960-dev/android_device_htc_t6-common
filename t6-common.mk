@@ -67,6 +67,11 @@ PRODUCT_PACKAGES += \
     Snap \
     libcamera_shim
 
+# Camera HIDL interfaces
+ PRODUCT_PACKAGES += \
+     android.hardware.camera.provider@2.4-impl \
+     camera.device@3.2-impl
+
 # Charger
 WITH_CM_CHARGER := false
 
