@@ -10,6 +10,10 @@ on init
     export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so"
 
     symlink /sdcard /storage/sdcard0
+	
+    # Setup ZRAM options
+    write /sys/block/zram0/comp_algorithm lz4
+    write /sys/block/zram0/max_comp_streams 2
 
     # For Invensense MPU3050
     chmod 0664 /sys/class/gyro_sensors/gyro/mpu_lpm_flag
@@ -170,6 +174,7 @@ on fs
     mkdir /firmware/wcnss 0771 system system
 
     mount_all ./fstab.qcom
+    swapon_all ./fstab.qcom
 
     mkdir /mnt/qcks 0700 root system
     mount tmpfs tmpfs /mnt/qcks size=20m,mode=0750,gid=1000
@@ -328,6 +333,10 @@ on boot
     restorecon_recursive /dev/htc_fingerprint
     restorecon_recursive /dev/validity
     restorecon_recursive /dev/vfsspi
+
+    # Swappiness and memory pages
+    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 40
 
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
