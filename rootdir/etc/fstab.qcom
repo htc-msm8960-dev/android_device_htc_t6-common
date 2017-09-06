@@ -14,6 +14,7 @@
 /dev/block/platform/msm_sdcc.1/by-name/radio		/firmware/mdm	vfat	ro,fmask=0000,dmask=0000,shortname=lower,context=u:object_r:firmware_file:s0		wait
 /dev/block/platform/msm_sdcc.1/by-name/adsp		/firmware/q6	vfat	ro,fmask=0000,dmask=0000,shortname=lower,context=u:object_r:firmware_file:s0		wait
 /dev/block/platform/msm_sdcc.1/by-name/wcnss		/firmware/wcnss	vfat	ro,fmask=0000,dmask=0000,shortname=lower,context=u:object_r:firmware_file:s0		wait
+/dev/block/zram0                                      none                swap     defaults                                                                   zramsize=419430400
 
 # External Storage Devices
 /devices/platform/msm_sdcc.3/mmc_host*	auto	auto	defaults	voldmanaged=sdcard2:auto,encryptable=userdata
