@@ -18,14 +18,16 @@
 $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay
+#    $(LOCAL_PATH)/overlay-lineage
 
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
-	frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
@@ -82,18 +84,18 @@ WITH_CM_CHARGER := false
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprintd \
+    android.hardware.biometrics.fingerprint@2.1-service \
     fingerprint.msm8960 \
     ValidityService \
-	libvcsfp_shim
+    libvcsfp_shim
 
 # Gello
 PRODUCT_PACKAGES += \
     Gello
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8960
+# PRODUCT_PACKAGES += \
+#    gps.msm8960
 
 # GPS HIDL interfaces
 PRODUCT_PACKAGES += \
@@ -182,7 +184,7 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     init.qcom.usb.rc \
     init.target.rc \
-    init.target.sh \
+    loggy.sh \
     ueventd.qcom.rc
 
 # USB HIDL interfaces

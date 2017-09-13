@@ -241,7 +241,7 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    start qcamerasvr
+    #start qcamerasvr
 
     # 4.3 requires this
     chmod 0644 /proc/cmdline
@@ -374,7 +374,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
-    seclabel u:r:bluetooth_loader:s0
+    # seclabel u:r:bluetooth_loader:s0
     oneshot
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp

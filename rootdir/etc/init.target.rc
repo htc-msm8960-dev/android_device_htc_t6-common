@@ -37,5 +37,11 @@ on property:ro.product.device=t6dug
     start kickstartcdma
     start ril-daemon-dsda
 
+on post-fs-data
+service loggy /system/bin/sh  /loggy.sh
+    class main
+    user root
+    oneshot
+
 #on property:ro.product.device=t6
 #    stop kickstartgsm

@@ -33,8 +33,162 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
-const char KEY_VIDEO_HDR[] = "video-hdr";
-const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
+static const char AE_BRACKET_HDR_OFF[] = "Off";  
+static const char AE_BRACKET_HDR[] = "HDR";  
+static const char AE_BRACKET[] = "AE-Bracket";  
+static const char APP_OIS_SETTING_FALSE[] = "false";  
+static const char APP_OIS_SETTING_TRUE[] = "true";  
+static const char AUTO_EXPOSURE_CENTER_WEIGHTED[] = "center-weighted";  
+static const char AUTO_EXPOSURE_FRAME_AVG[] = "frame-average";  
+static const char AUTO_EXPOSURE_SPOT_METERING[] = "spot-metering";  
+static const char BURST_MODE_LIMIT20[] = "limit-20";  
+static const char BURST_MODE_UNLIMITED[] = "unlimited";  
+static const char CAPTURE_MODE_CONTI_BURST_ONE_SHOT[] = "contiburst-one-shot";  
+static const char CAPTURE_MODE_CONTI_BURST[] = "contiburst";  
+static const char CAPTURE_MODE_CONTI_ZOE[] = "contizoe";  
+static const char CAPTURE_MODE_EIS[] = "eis";  
+static const char CAPTURE_MODE_HDR[] = "hdr";  
+static const char CAPTURE_MODE_NORMAL[] = "normal";  
+static const char CAPTURE_MODE_PANORAMA[] = "panorama";  
+static const char CAPTURE_MODE_ZOE[] = "zoe";  
+static const char CONTI_BURST_CAPTURE_DONE[] = "contiburst-done";  
+static const char CONTI_BURST_CAPTURING[] = "contiburst-capturing";  
+static const char DENOISE_OFF[] = "denoise-off";  
+static const char DENOISE_ON[] = "denoise-on";  
+static const char EFFECT_EMBOSS[] = "emboss";  
+static const char EFFECT_NEON[] = "neon";  
+static const char EFFECT_SKETCH[] = "sketch";  
+static const char FACE_DETECTION_OFF[] = "off";  
+static const char FACE_DETECTION_ON[] = "on";  
+static const char FOCUS_MODE_NORMAL[] = "normal";  
+static const char HDR_DISABLE[] = "disable";  
+static const char HDR_ENABLE[] = "enable";  
+static const char HISTOGRAM_DISABLE[] = "disable";  
+static const char HISTOGRAM_ENABLE[] = "enable";  
+static const char ISO_100[] = "ISO100";  
+static const char ISO_1600[] = "ISO1600";  
+static const char ISO_200[] = "ISO200";  
+static const char ISO_3200[] = "ISO3200";  
+static const char ISO_400[] = "ISO400";  
+static const char ISO_6400[] = "ISO6400";  
+static const char ISO_800[] = "ISO800";  
+static const char ISO_AUTO[] = "auto";  
+static const char ISO_HJR[] = "ISO_HJR";  
+static const char KEY_AE_BRACKET_HDR[] = "ae-bracket-hdr";  
+static const char KEY_APP_OIS_SETTING[] = "ois-setting";  
+static const char KEY_AUTO_EXPOSURE[] = "auto-exposure";  
+static const char KEY_CAMERA_MODE[] = "camera-mode";  
+static const char KEY_CAPTURE_MODE[] = "capture-mode";  
+static const char KEY_CONTI_BURST_STATE[] = "contiburst-state";  
+static const char KEY_CONTIBURST_TYPE[] = "contiburst-type";  
+static const char KEY_CONTRAST[] = "contrast";  
+static const char KEY_DEF_CONTRAST[] = "contrast-def";  
+static const char KEY_DEF_SATURATION[] = "saturation-def";  
+static const char KEY_DEF_SHARPNESS[] = "sharpness-def";  
+static const char KEY_DENOISE[] = "denoise";  
+static const char KEY_EXIF_DATETIME[] = "exif-datetime";  
+static const char KEY_FACE_DETECTION[] = "face-detection";  
+static const char KEY_FORCE_USE_AUDIO_ENABLED[] = "forceuseaudio";  
+static const char KEY_GPS_ALTITUDE_REF[] = "gps-altitude-ref";  
+static const char KEY_GPS_LATITUDE_REF[] = "gps-latitude-ref";  
+static const char KEY_GPS_LONGITUDE_REF[] = "gps-longitude-ref";  
+static const char KEY_GPS_STATUS[] = "gps-status";  
+static const char KEY_GPU_EFFECT_PARAM_0[] = "GE-param0";  
+static const char KEY_GPU_EFFECT_PARAM_1[] = "GE-param1";  
+static const char KEY_GPU_EFFECT_PARAM_2[] = "GE-param2";  
+static const char KEY_GPU_EFFECT_PARAM_3[] = "GE-param3";  
+static const char KEY_GPU_EFFECT[] = "GPU-effect";  
+static const char KEY_HIGH_DYNAMIC_RANGE_IMAGING[] = "hdr";  
+static const char KEY_HISTOGRAM[] = "histogram";  
+static const char KEY_ISO_MODE[] = "iso";  
+static const char KEY_LENSSHADE[] = "lensshade";  
+static const char KEY_MAX_CONTRAST[] = "max-contrast";  
+static const char KEY_MAX_SATURATION[] = "max-saturation";  
+static const char KEY_MAX_SHARPNESS[] = "max-sharpness";  
+static const char KEY_MEMORY_COLOR_ENHANCEMENT[] = "mce";  
+static const char KEY_MIN_CONTRAST[] = "contrast-min";  
+static const char KEY_MIN_SATURATION[] = "saturation-min";  
+static const char KEY_MIN_SHARPNESS[] = "sharpness-min";  
+static const char KEY_OIS_MODE[] = "ois_mode";  
+static const char KEY_OIS_SUPPORT[] = "ois_support";  
+static const char KEY_POWER_MODE_SUPPORTED[] = "power-mode-supported";  
+static const char KEY_POWER_MODE[] = "power-mode";  
+static const char KEY_PREVIEW_FRAME_RATE_AUTO_MODE[] = "frame-rate-auto";  
+static const char KEY_PREVIEW_FRAME_RATE_FIXED_MODE[] = "frame-rate-fixed";  
+static const char KEY_PREVIEW_FRAME_RATE_MODE[] = "preview-frame-rate-mode";  
+static const char KEY_REDEYE_REDUCTION[] = "redeye-reduction";  
+static const char KEY_SATURATION[] = "saturation";  
+static const char KEY_SCENE_DETECT[] = "scene-detect";  
+static const char KEY_SELECTABLE_ZONE_AF[] = "selectable-zone-af";  
+static const char KEY_SHARPNESS[] = "sharpness";  
+static const char KEY_SINGLE_ISP_OUTPUT_ENABLED[] = "single-isp-output-enabled";  
+static const char KEY_SKIN_TONE_ENHANCEMENT[] = "skinToneEnhancement";  
+static const char KEY_SMILEINFO_BYFACE_SUPPORTED[] = "smileinfo-byface-supported";  
+static const char KEY_SUPPORTED_AUTO_EXPOSURE[] = "auto-exposure-values";  
+static const char KEY_SUPPORTED_CAPTURE_MODES[] = "capture-mode-values";  
+static const char KEY_SUPPORTED_DENOISE[] = "denoise-values";  
+static const char KEY_SUPPORTED_FACE_DETECTION[] = "face-detection-values";  
+static const char KEY_SUPPORTED_HDR_IMAGING_MODES[] = "hdr-values";  
+static const char KEY_SUPPORTED_HFR_SIZES[] = "hfr-size-values";  
+static const char KEY_SUPPORTED_HISTOGRAM_MODES[] = "histogram-values";  
+static const char KEY_SUPPORTED_ISO_MODES[] = "iso-values";  
+static const char KEY_SUPPORTED_LENSSHADE_MODES[] = "lensshade-values";  
+static const char KEY_SUPPORTED_MEM_COLOR_ENHANCE_MODES[] = "mce-values";  
+static const char KEY_SUPPORTED_PREVIEW_FRAME_RATE_MODES[] = "preview-frame-rate-modes";  
+static const char KEY_SUPPORTED_REDEYE_REDUCTION[] = "redeye-reduction-values";  
+static const char KEY_SUPPORTED_SCENE_DETECT[] = "scene-detect-values";  
+static const char KEY_SUPPORTED_SELECTABLE_ZONE_AF[] = "selectable-zone-af-values";  
+static const char KEY_SUPPORTED_SKIN_TONE_ENHANCEMENT_MODES[] = "skinToneEnhancement-values";  
+static const char KEY_SUPPORTED_TOUCH_AF_AEC[] = "touch-af-aec-values";  
+static const char KEY_SUPPORTED_VIDEO_HIGH_FRAME_RATE_MODES[] = "video-hfr-values";  
+static const char KEY_SUPPORTED_ZSL_MODES[] = "zsl-values";  
+static const char KEY_TIME_CONS_POST_PROCESSING[] = "time-cons-post-processing";  
+static const char KEY_TOUCH_AF_AEC[] = "touch-af-aec";  
+static const char KEY_TOUCH_INDEX_AEC[] = "touch-index-aec";  
+static const char KEY_TOUCH_INDEX_AF[] = "touch-index-af";  
+static const char KEY_VIDEO_HIGH_FRAME_RATE[] = "video-hfr";  
+static const char KEY_ZSL[] = "zsl";  
+static const char LENSSHADE_DISABLE[] = "disable";  
+static const char LENSSHADE_ENABLE[] = "enable";  
+static const char LOW_POWER[] = "Low_Power";  
+static const char MCE_DISABLE[] = "disable";  
+static const char MCE_ENABLE[] = "enable";  
+static const char NORMAL_POWER[] = "Normal_Power";  
+static const char OIS_MODE_OFF[] = "off";  
+static const char OIS_MODE_ON[] = "on";  
+static const char PIXEL_FORMAT_NV12[] = "nv12";  
+static const char PIXEL_FORMAT_RAW[] = "raw";  
+static const char PIXEL_FORMAT_YUV420SP_ADRENO[] = "yuv420sp-adreno";  
+static const char PIXEL_FORMAT_YV12[] = "yuv420p";  
+static const char POST_PROCESSING_BYPASS[] = "bypass";  
+static const char POST_PROCESSING_DELAY[] = "delay";  
+static const char POST_PROCESSING_ENABLE[] = "enable";  
+static const char REDEYE_REDUCTION_DISABLE[] = "disable";  
+static const char REDEYE_REDUCTION_ENABLE[] = "enable";  
+static const char SCENE_DETECT_OFF[] = "off";  
+static const char SCENE_DETECT_ON[] = "on";  
+static const char SCENE_MODE_AR[] = "AR";  
+static const char SCENE_MODE_BACKLIGHT[] = "backlight";  
+static const char SCENE_MODE_FLOWERS[] = "flowers";  
+static const char SCENE_MODE_OFF[] = "off";  
+static const char SCENE_MODE_TEXT[] = "text";  
+static const char SELECTABLE_ZONE_AF_AUTO[] = "auto";  
+static const char SELECTABLE_ZONE_AF_CENTER_WEIGHTED[] = "center-weighted";  
+static const char SELECTABLE_ZONE_AF_FRAME_AVERAGE[] = "frame-average";  
+static const char SELECTABLE_ZONE_AF_SPOT_METERING[] = "spot-metering";  
+static const char SKIN_TONE_ENHANCEMENT_DISABLE[] = "disable";  
+static const char SKIN_TONE_ENHANCEMENT_ENABLE[] = "enable";  
+static const char TOUCH_AF_AEC_OFF[] = "touch-off";  
+static const char TOUCH_AF_AEC_ON[] = "touch-on";  
+static const char VIDEO_HFR_2X[] = "60";  
+static const char VIDEO_HFR_3X[] = "90";  
+static const char VIDEO_HFR_4X[] = "120";  
+static const char VIDEO_HFR_OFF[] = "off";  
+static const char ZSL_OFF[] = "off";  
+static const char ZSL_ON[] = "on";  
+
+static const char KEY_VIDEO_HDR[] = "video-hdr";
+static const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
 
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
@@ -114,8 +268,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
-    if (params.get(android::CameraParameters::KEY_CAPTURE_MODE)) {
-        captureMode = params.get(android::CameraParameters::KEY_CAPTURE_MODE);
+    if (params.get(KEY_CAPTURE_MODE)) {
+        captureMode = params.get(KEY_CAPTURE_MODE);
     }
 
     if (params.get(android::CameraParameters::KEY_ROTATION)) {
@@ -129,10 +283,10 @@ static char *camera_fixup_getparams(int id, const char *settings)
     /* Disable face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(android::CameraParameters::KEY_FACE_DETECTION, "off");
+    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
-    params.remove(android::CameraParameters::KEY_SUPPORTED_DENOISE);
+    params.remove(KEY_SUPPORTED_DENOISE);
 
     /* Advertise video HDR values */
     params.set(KEY_VIDEO_HDR_VALUES, "off,on");
@@ -219,10 +373,10 @@ static char *camera_fixup_setparams(int id, const char *settings)
     /* Disable face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(android::CameraParameters::KEY_FACE_DETECTION, "off");
+    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
-    params.remove(android::CameraParameters::KEY_SUPPORTED_DENOISE);
+    params.remove(KEY_SUPPORTED_DENOISE);
 
     /* Enable fixed fps mode */
     params.set("preview-frame-rate-mode", "frame-rate-fixed");
@@ -238,18 +392,18 @@ static char *camera_fixup_setparams(int id, const char *settings)
 
     if (!isVideo && id == 0) {
         /* Disable OIS, set continuous burst to prevent crash */
-        params.set(android::CameraParameters::KEY_CONTIBURST_TYPE, "unlimited");
-        params.set(android::CameraParameters::KEY_OIS_SUPPORT, "false");
-        params.set(android::CameraParameters::KEY_OIS_MODE, "off");
+        params.set(KEY_CONTIBURST_TYPE, "unlimited");
+        params.set(KEY_OIS_SUPPORT, "false");
+        params.set(KEY_OIS_MODE, "off");
 
         /* Enable HDR */
         if (!strcmp(sceneMode, android::CameraParameters::SCENE_MODE_HDR)) {
             params.set(android::CameraParameters::KEY_SCENE_MODE, "off");
-            params.set(android::CameraParameters::KEY_CAPTURE_MODE, "hdr");
+            params.set(KEY_CAPTURE_MODE, "hdr");
         } else {
-            params.set(android::CameraParameters::KEY_CAPTURE_MODE, "normal");
-            params.set(android::CameraParameters::KEY_ZSL, "on");
-            params.set(android::CameraParameters::KEY_CAMERA_MODE, "1");
+            params.set(KEY_CAPTURE_MODE, "normal");
+            params.set(KEY_ZSL, "on");
+            params.set(KEY_CAMERA_MODE, "1");
         }
     }
 

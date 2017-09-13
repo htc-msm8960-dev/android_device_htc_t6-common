@@ -29,7 +29,7 @@
 
 LOCAL_PATH := device/htc/t6-common
 
-TARGET_SPECIFIC_HEADER_PATH += device/htc/t6-common/include
+# TARGET_SPECIFIC_HEADER_PATH += device/htc/t6-common/include
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
@@ -78,6 +78,10 @@ AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
+# GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+
 # Graphics
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 HAVE_ADRENO_SOURCE := false
@@ -89,16 +93,17 @@ TARGET_RECOVERY_DEVICE_DIRS += device/htc/t6-common
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
+# TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+# BOARD_PROVIDES_LIBRIL := true
+TARGET_RIL_VARIANT := caf
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
--include device/qcom/sepolicy/sepolicy.mk
+# -include device/lineage/sepolicy/qcom/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
+# BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools
@@ -110,6 +115,7 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+#TARGET_PROVIDES_WCNSS_QMI := true
 TARGET_USES_WCNSS_CTRL := true
 TARGET_USES_QCOM_WCNSS_QMI := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
