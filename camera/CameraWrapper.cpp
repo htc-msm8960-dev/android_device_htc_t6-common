@@ -34,7 +34,6 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
-<<<<<<< HEAD
 static const char AE_BRACKET_HDR_OFF[] = "Off";  
 static const char AE_BRACKET_HDR[] = "HDR";  
 static const char AE_BRACKET[] = "AE-Bracket";  
@@ -89,7 +88,6 @@ static const char KEY_DEF_SATURATION[] = "saturation-def";
 static const char KEY_DEF_SHARPNESS[] = "sharpness-def";  
 static const char KEY_DENOISE[] = "denoise";  
 static const char KEY_EXIF_DATETIME[] = "exif-datetime";  
-static const char KEY_FACE_DETECTION[] = "face-detection";  
 static const char KEY_FORCE_USE_AUDIO_ENABLED[] = "forceuseaudio";  
 static const char KEY_GPS_ALTITUDE_REF[] = "gps-altitude-ref";  
 static const char KEY_GPS_LATITUDE_REF[] = "gps-latitude-ref";  
@@ -193,25 +191,6 @@ static const char KEY_VIDEO_HDR[] = "video-hdr";
 static const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
 
 static android::Mutex gCameraWrapperLock;
-=======
-const char KEY_VIDEO_HDR[] = "video-hdr";
-const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
-
-// Wrapper common specific parameters names
-const char KEY_CAPTURE_MODE[] = "capture-mode";
-const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
-const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
-const char KEY_OIS_SUPPORT[] = "ois_support";
-const char KEY_OIS_MODE[] = "ois_mode";
-const char KEY_ZSL[] = "zsl";
-const char SCENE_MODE_HDR[] = "hdr";
-const char KEY_SCENE_MODE[] = "scene-mode";
-const char KEY_CAMERA_MODE[] = "camera-mode";
-
-using namespace android;
-
-static Mutex gCameraWrapperLock;
->>>>>>> f27c296... m7-common: Remove face detect key
 static camera_module_t *gVendorModule = 0;
 
 static char **fixed_set_params = NULL;
