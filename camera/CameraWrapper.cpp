@@ -34,6 +34,7 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
+<<<<<<< HEAD
 static const char AE_BRACKET_HDR_OFF[] = "Off";  
 static const char AE_BRACKET_HDR[] = "HDR";  
 static const char AE_BRACKET[] = "AE-Bracket";  
@@ -192,6 +193,25 @@ static const char KEY_VIDEO_HDR[] = "video-hdr";
 static const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
 
 static android::Mutex gCameraWrapperLock;
+=======
+const char KEY_VIDEO_HDR[] = "video-hdr";
+const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
+
+// Wrapper common specific parameters names
+const char KEY_CAPTURE_MODE[] = "capture-mode";
+const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
+const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
+const char KEY_OIS_SUPPORT[] = "ois_support";
+const char KEY_OIS_MODE[] = "ois_mode";
+const char KEY_ZSL[] = "zsl";
+const char SCENE_MODE_HDR[] = "hdr";
+const char KEY_SCENE_MODE[] = "scene-mode";
+const char KEY_CAMERA_MODE[] = "camera-mode";
+
+using namespace android;
+
+static Mutex gCameraWrapperLock;
+>>>>>>> f27c296... m7-common: Remove face detect key
 static camera_module_t *gVendorModule = 0;
 
 static char **fixed_set_params = NULL;
@@ -292,11 +312,6 @@ static char *camera_fixup_getparams(int __attribute__((unused)) id,
         videoHdr = params.get(KEY_VIDEO_HDR);
     }
 
-    /* Disable face detection */
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(KEY_FACE_DETECTION, "off");
-
     /* Disable denoise */
     params.remove(KEY_SUPPORTED_DENOISE);
 
@@ -373,11 +388,6 @@ static char *camera_fixup_setparams(int __attribute__((unused)) id,
     if (params.get(KEY_VIDEO_HDR)) {
         videoHdr = params.get(KEY_VIDEO_HDR);
     }
-
-    /* Disable face detection */
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
     params.remove(KEY_SUPPORTED_DENOISE);
