@@ -345,25 +345,25 @@ on boot
 
 # Services begin here
 
-service akmd /system/bin/akmd
+service akmd /system/vendor/bin/akmd
     class main
     user system
     group system misc input
 
-service cir_fw_update /system/bin/cir_fw_update -u cir.img
+service cir_fw_update /system/vendor/bin/cir_fw_update -u cir.img
     class main
     user root
     group root
     oneshot
 
-service fm_dl /system/bin/setprop hw.fm.init 1
+service fm_dl /system/vendor/bin/setprop hw.fm.init 1
     class late_start
     user root
     group system fm_radio
     disabled
     oneshot
 
-service netmgrd /system/bin/netmgrd
+service netmgrd /system/vendor/bin/netmgrd
     class core
     group radio system wakelock
 
@@ -374,33 +374,33 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     # seclabel u:r:bluetooth_loader:s0
     oneshot
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /system/vendor/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root readproc
     disabled
 
-service qcamerasvr /system/bin/mm-qcamera-daemon
+service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet graphics
 
-service qmuxd /system/bin/qmuxd
+service qmuxd /system/vendor/bin/qmuxd
     class core
     user radio
     group radio audio gps wakelock
 
-service qseecomd /system/bin/qseecomd
+service qseecomd /system/vendor/bin/qseecomd
     class core
     user root
     group root
 
-service thermald /system/bin/thermald
+service thermald /system/vendor/bin/thermald
     class main
     user root
     group root
 	
-service vcsFPService /system/bin/vcsFPService
+service vcsFPService /system/vendor/bin/vcsFPService
     class late_start
     user root
     group system
