@@ -162,6 +162,8 @@ on init
 
 # On emmc mount the partition containing firmware
 on fs
+    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
     mkdir /devlog 0700 root root
     mkdir /ramdump 0700 root root
 
@@ -353,11 +355,6 @@ service cir_fw_update /system/bin/cir_fw_update -u cir.img
     user root
     group root
     oneshot
-	
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
 
 service fm_dl /system/bin/setprop hw.fm.init 1
     class late_start

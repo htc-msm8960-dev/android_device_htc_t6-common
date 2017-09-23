@@ -96,14 +96,14 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
-# BOARD_PROVIDES_LIBRIL := true
-TARGET_RIL_VARIANT := caf
+BOARD_PROVIDES_LIBRIL := true
+# TARGET_RIL_VARIANT := caf
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
-# -include device/lineage/sepolicy/qcom/sepolicy.mk
+#-include device/lineage/sepolicy/qcom/sepolicy.mk
 
-# BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
+#BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools

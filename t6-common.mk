@@ -34,6 +34,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/com.htc.software.market.xml:system/etc/permissions/com.htc.software.market.xml \
     $(LOCAL_PATH)/configs/res_ctrl.conf:system/etc/res_ctrl.conf
 
+# Seccomp policy
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp_policy/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
+
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
 
@@ -77,10 +82,14 @@ PRODUCT_PACKAGES += \
 # Camera HIDL interfaces
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    camera.device@3.2-impl
+    camera.device@1.0-impl
 
 # Charger
 WITH_CM_CHARGER := false
+
+# Consumerir HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -175,7 +184,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors HIDL interfaces
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
 # Ramdisk
 PRODUCT_PACKAGES += \
