@@ -85,7 +85,7 @@ PRODUCT_PACKAGES += \
     camera.device@1.0-impl
 
 # Charger
-WITH_CM_CHARGER := false
+WITH_LINEAGE_CHARGER := false
 
 # Consumerir HIDL interfaces
 PRODUCT_PACKAGES += \
