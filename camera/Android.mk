@@ -47,7 +47,7 @@ LOCAL_SHARED_LIBRARIES := \
     android.hidl.token@1.0-utils
 
 LOCAL_STATIC_LIBRARIES := \
-    libarect
+    libarect libbase
 
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
