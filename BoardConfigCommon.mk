@@ -33,6 +33,7 @@ LOCAL_PATH := device/htc/t6-common
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
+BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=qcom user_debug=23
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
@@ -93,7 +94,7 @@ TARGET_RECOVERY_DEVICE_DIRS += device/htc/t6-common
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
-# TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
