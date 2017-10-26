@@ -153,6 +153,7 @@
 
 # keystore
 /dev/qseecom              0660  system       drmrpc
+/dev/qce                  0660  system       drmrpc
 
 # Fingerprint
 /dev/vfsspi               0660  system       system
