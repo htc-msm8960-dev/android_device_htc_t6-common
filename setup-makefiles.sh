@@ -35,14 +35,14 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
 
 # Copyright headers and common guards
-write_headers "t6 t6spr t6vzw"
+write_headers "t6 t6d"
 
 write_makefiles "$MY_DIR"/common-proprietary-files.txt
 
 write_footers
 
 # Reinitialize the helper for device
-setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
+setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
 
 # Copyright headers and guards
 write_headers

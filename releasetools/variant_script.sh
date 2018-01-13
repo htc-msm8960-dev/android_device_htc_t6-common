@@ -2,7 +2,19 @@
 
 set -e
 
-# Detect variant and create symlinks to its specific-blobs
+# Helper functions
+better_copy()
+{
+  cp -dp "$1" "$2"
+  # symlinks don't have a context
+  if [ ! -L "$1" ]; then
+    # it is assumed that every label starts with 'u:object_r' and has no white-spaces
+    local context=`ls -Z "$1" | grep -o 'u:object_r:[^ ]*' | head -1`
+    chcon -v "$context" "$2"
+  fi
+}
+
+# Detect variant and copy its specific-blobs
 modelid=`getprop ro.boot.mid`
 
 case $modelid in
@@ -16,12 +28,24 @@ case $modelid in
     *)           variant="gsm" ;;
 esac
 
-# Skip symlink creation for Dual SIM variants because blobs are already in the proper location
+# Skip copying blobs in case of Dual SIM variants because the files are already in the proper location
 if [ "$variant" == "vzw" ] || [ "$variant" == "spr" ] || [ "$variant" == "gsm" ] || [ "$variant" == "tl" ]; then
-  basedir="/system/blobs/$variant/"
-  cd $basedir
-  chmod 755 bin/*
-  find . -type f | while read file; do ln -s $basedir$file /system/$file ; done
+  basedir="/system/vendor/blobs/$variant/"
+  if [ -d $basedir ]; then
+    cd $basedir
+
+    for file in `find . -type f` ; do
+      mkdir -p `dirname /system/vendor/$file`
+      better_copy $file /system/vendor/$file
+    done
+
+    for file in bin/* ; do
+      chmod 755 /system/vendor/$file
+    done
+  else
+    echo "Expected source directory does not exist!"
+    exit 1
+  fi
 fi
 
 exit 0

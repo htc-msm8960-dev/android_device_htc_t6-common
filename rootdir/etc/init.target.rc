@@ -1,17 +1,17 @@
 on boot
 
-service kickstartgsm /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/ -u
+service kickstartgsm /system/vendor/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/ -u
     class core
     user root
     oneshot
 	
-service kickstartcdma /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/
+service kickstartcdma /system/vendor/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/
     class core
     user root
     oneshot
     disabled
 
-service ril-daemon-dsda /system/bin/rild_qsc -c 2
+service ril-daemon-dsda /system/vendor/bin/rild_qsc -c 2
     class core
     socket rild2 stream 660 root radio
     socket rild-debug-dsda stream 660 radio system
@@ -38,7 +38,7 @@ on property:ro.product.device=t6dug
     start ril-daemon-dsda
 
 on post-fs-data
-service loggy /system/bin/sh  /loggy.sh
+service loggy /vendor/loggy.sh
     class main
     user root
     oneshot

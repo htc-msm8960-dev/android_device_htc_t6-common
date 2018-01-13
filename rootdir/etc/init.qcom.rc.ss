@@ -7,7 +7,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 
 on init
-    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so:/system/bin/mpdecision|libshims_atomic.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/vendor/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so:/system/vendor/bin/mpdecision|libshims_atomic.so"
 
     symlink /sdcard /storage/sdcard0
 	
@@ -162,8 +162,6 @@ on init
 
 # On emmc mount the partition containing firmware
 on fs
-    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
     mkdir /devlog 0700 root root
     mkdir /ramdump 0700 root root
 
@@ -279,7 +277,7 @@ on boot
     write /sys/kernel/debug/pm8921-dbg/addr 0x1F5
     write /sys/kernel/debug/pm8921-dbg/data 0xE1
 
-    write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
+    #write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
 
     # Create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -348,65 +346,65 @@ on boot
 
 # Services begin here
 
-service akmd /system/vendor/bin/akmd
+service akmd /vendor/bin/akmd
     class main
     user system
     group system misc input
 
-service cir_fw_update /system/vendor/bin/cir_fw_update -u cir.img
+service cir_fw_update /vendor/bin/cir_fw_update -u cir.img
     class main
     user root
     group root
     oneshot
 
-service fm_dl /system/vendor/bin/setprop hw.fm.init 1
+service fm_dl /system/bin/setprop hw.fm.init 1
     class late_start
     user root
     group system fm_radio
     disabled
     oneshot
 
-service netmgrd /system/vendor/bin/netmgrd
+service netmgrd /vendor/bin/netmgrd
     class core
     group radio system wakelock
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
     # seclabel u:r:bluetooth_loader:s0
     oneshot
 
-service mpdecision /system/vendor/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /vendor/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root readproc
     disabled
 
-service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
+service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet graphics
 
-service qmuxd /system/vendor/bin/qmuxd
+service qmuxd /vendor/bin/qmuxd
     class core
     user radio
     group radio audio gps wakelock
 
-service qseecomd /system/vendor/bin/qseecomd
+service qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
 
-service thermald /system/vendor/bin/thermald
+service thermald /vendor/bin/thermald
     class main
     user root
     group root
 	
-service vcsFPService /system/vendor/bin/vcsFPService
-    class late_start
-    user root
-    group system
+#service vcsFPService /vendor/bin/vcsFPService
+#    class late_start
+#    user root
+#    group system
 	
 # WiFi
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
@@ -443,7 +441,7 @@ on property:init.svc.bootanim=stopped
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     # Init modem
-    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
+    #write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
 on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0

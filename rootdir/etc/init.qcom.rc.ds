@@ -7,7 +7,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 
 on init
-    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libril_qsc.so|libril_qscshim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so:/system/bin/mpdecision|libshims_atomic.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libril_qsc.so|libril_qscshim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/vendor/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so:/system/vendor/bin/mpdecision|libshims_atomic.so"
 
     symlink /sdcard /storage/sdcard0
 
@@ -346,21 +346,16 @@ on boot
 
 # Services begin here
 
-service akmd /system/bin/akmd
+service akmd /vendor/bin/akmd
     class main
     user system
     group system misc input
 
-service cir_fw_update /system/bin/cir_fw_update -u cir.img
+service cir_fw_update /vendor/bin/cir_fw_update -u cir.img
     class main
     user root
     group root
     oneshot
-
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
 
 service fm_dl /system/bin/setprop hw.fm.init 1
     class late_start
@@ -369,43 +364,44 @@ service fm_dl /system/bin/setprop hw.fm.init 1
     disabled
     oneshot
 
-service netmgrd /system/bin/netmgrd
+service netmgrd /vendor/bin/netmgrd
     class core
+    group radio system wakelock
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
-    seclabel u:r:bluetooth_loader:s0
+    # seclabel u:r:bluetooth_loader:s0
     oneshot
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /vendor/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root readproc
     disabled
 
-service qcamerasvr /system/bin/mm-qcamera-daemon
+service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet graphics
 
-service qmuxd /system/bin/qmuxd
+service qmuxd /vendor/bin/qmuxd
     class core
     user radio
-    group radio audio gps
+    group radio audio gps wakelock
 
-service qseecomd /system/bin/qseecomd
+service qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
 
-service thermald /system/bin/thermald
+service thermald /vendor/bin/thermald
     class main
     user root
     group root
-
-service vcsFPService /system/bin/vcsFPService
+	
+service vcsFPService /vendor/bin/vcsFPService
     class late_start
     user root
     group system
