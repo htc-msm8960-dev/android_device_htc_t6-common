@@ -424,6 +424,11 @@ service thermal-engine /vendor/bin/thermal-engine
     user root
     group root
 
+service time_daemon /vendor/bin/time_daemon
+    class late_start
+    user root
+    group root
+
 service vcsFPService /vendor/bin/vcsFPService
     class late_start
     user root

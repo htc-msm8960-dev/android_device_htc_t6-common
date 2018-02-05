@@ -235,6 +235,12 @@ lib/libmlplatform.so
 lib/libmpl.so
 lib/libmpl_jni.so
 
+# Time services
+-app/TimeService/TimeService.apk:vendor/app/TimeService/TimeService.apk
+bin/time_daemon:vendor/bin/time_daemon
+vendor/lib/libtime_genoff.so
+vendor/lib/libTimeService.so
+
 # Widevine
 bin/qseecomd
 lib/libdrmdecrypt.so
