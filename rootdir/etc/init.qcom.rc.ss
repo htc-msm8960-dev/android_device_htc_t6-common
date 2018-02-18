@@ -18,7 +18,7 @@ on early-init
 
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     chown system system /sys/kernel/debug/kgsl/proc
-
+	
 on init
 	export LD_PRELOAD libshim_atomic.so
 
