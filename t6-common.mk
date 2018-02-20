@@ -103,13 +103,13 @@ PRODUCT_PACKAGES += \
     Gello
 
 # GPS
-#PRODUCT_PACKAGES += \
-#    gps.msm8960 \
-#    gps.conf
+PRODUCT_PACKAGES += \
+    libgps.utils \
+    gps.msm8960
 
 # GPS HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl
+#PRODUCT_PACKAGES += \
+#    android.hardware.gnss@1.0-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
