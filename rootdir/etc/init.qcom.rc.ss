@@ -3,9 +3,6 @@ import init.target.rc
 import init.qcom.usb.rc
 
 on early-init
-    mount_all ./fstab.qcom
-    swapon_all ./fstab.qcom
-
     symlink /data/tombstones /tombstones
 
 	# For firmwares
@@ -20,7 +17,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 	
 on init
-	export LD_PRELOAD libshim_atomic.so
+    export LD_PRELOAD libshim_atomic.so
 
     export LD_SHIM_LIBS "/system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/vendor/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so"
 
@@ -180,6 +177,9 @@ on fs
     mkdir /devlog 0700 root root
     mkdir /ramdump 0700 root root
 
+    mount_all ./fstab.qcom
+    swapon_all ./fstab.qcom
+
     mkdir /mnt/qcks 0700 root system
     mount tmpfs tmpfs /mnt/qcks size=20m,mode=0750,gid=1000
     mkdir /mnt/efs 0700 root system
@@ -280,7 +280,7 @@ on boot
     write /sys/kernel/debug/pm8921-dbg/addr 0x1F5
     write /sys/kernel/debug/pm8921-dbg/data 0xE1
 
-    #write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
 
     # Create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -444,7 +444,7 @@ on property:init.svc.bootanim=stopped
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     # Init modem
-    #write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
+    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
 on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0

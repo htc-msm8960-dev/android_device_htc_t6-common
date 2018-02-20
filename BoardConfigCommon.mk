@@ -40,11 +40,9 @@ BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
 TARGET_KERNEL_CONFIG := t6_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+TARGET_USES_EARLY_SUSPEND := true
 
 TARGET_NEEDS_GCC_LIBC := true
-
-# Binder API version
-TARGET_USES_64_BIT_BINDER := true
 
 # Audio
 BOARD_HAVE_HTC_CSDCLIENT := true
@@ -59,8 +57,12 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 TARGET_BOOTANIMATION_HALF_RES := true
 
 # Camera
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_USES_MEDIA_EXTENSIONS := true
+TARGET_USES_NON_TREBLE_CAMERA := true
 
 # Charge mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
@@ -115,13 +117,13 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-# TARGET_RIL_VARIANT := caf
+TARGET_RIL_VARIANT := caf
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
-#-include device/lineage/sepolicy/qcom/sepolicy.mk
-
-#BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
+-include device/qcom/sepolicy/sepolicy.mk
+-include device/qcom/sepolicy/legacy-sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools

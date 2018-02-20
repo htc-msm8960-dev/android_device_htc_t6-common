@@ -4,6 +4,7 @@ service kickstartgsm /system/vendor/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_
     class core
     user root
     oneshot
+	disabled
 	
 service kickstartcdma /system/vendor/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/
     class core
@@ -37,11 +38,11 @@ on property:ro.product.device=t6dug
     start kickstartcdma
     start ril-daemon-dsda
 
-on post-fs-data
-service loggy /vendor/loggy.sh
-    class main
-    user root
-    oneshot
+#on post-fs-data
+#service loggy /vendor/loggy.sh
+#    class main
+#    user root
+#    oneshot
 
-#on property:ro.product.device=t6
-#    stop kickstartgsm
+on property:ro.product.device=t6debug
+   start kickstartgsm

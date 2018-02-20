@@ -92,24 +92,20 @@ PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl
 
 # Fingerprint
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
 #   android.hardware.biometrics.fingerprint@2.1-service
 #   fingerprint.msm8960 \
 #   ValidityService \
    libvcsfp_shim
-
-# Gatekeeper HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl
 
 # Gello
 PRODUCT_PACKAGES += \
     Gello
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8960 \
-    gps.conf
+#PRODUCT_PACKAGES += \
+#    gps.msm8960 \
+#    gps.conf
 
 # GPS HIDL interfaces
 PRODUCT_PACKAGES += \
