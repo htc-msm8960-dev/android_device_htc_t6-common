@@ -28,8 +28,6 @@
 #include <ui/GraphicBufferMapper.h>
 #include <ui/PixelFormat.h>
 
-#include <cutils/atomic.h>
-
 namespace android {
 
 // ===========================================================================
