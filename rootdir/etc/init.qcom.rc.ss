@@ -17,9 +17,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 	
 on init
-    export LD_PRELOAD libshim_atomic.so
-
-    export LD_SHIM_LIBS "/system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so:/system/vendor/lib/libqc-opt.so|libqc-opt_shim.so:/system/lib/liblog.so|liblog_shim.so:/system/lib/libvcsfp.so|libvcsfp_shim.so:/system/vendor/lib/libril.so|libshim_ril.so:/system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so"
+    #export LD_PRELOAD libshim_atomic.so 
 
     symlink /sdcard /storage/sdcard0
 	
@@ -243,7 +241,7 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    #start qcamerasvr
+    start qcamerasvr
 
     # 4.3 requires this
     chmod 0644 /proc/cmdline
@@ -279,7 +277,7 @@ on boot
     write /sys/kernel/debug/pm8921-dbg/addr 0x1F5
     write /sys/kernel/debug/pm8921-dbg/data 0xE1
 
-    write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
+    #write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
 
     # Create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -348,12 +346,12 @@ on boot
 
 # Services begin here
 
-service akmd /vendor/bin/akmd
+service akmd /bin/akmd
     class main
     user system
     group system misc input
 
-service cir_fw_update /vendor/bin/cir_fw_update -u cir.img
+service cir_fw_update /bin/cir_fw_update -u cir.img
     class main
     user root
     group root
@@ -366,9 +364,10 @@ service fm_dl /system/bin/setprop hw.fm.init 1
     disabled
     oneshot
 
-service netmgrd /vendor/bin/netmgrd
+service netmgrd /bin/netmgrd
     class core
-    group radio system wakelock
+	user root
+    group root system wifi wakelock radio inet
 
 service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
@@ -377,28 +376,28 @@ service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     # seclabel u:r:bluetooth_loader:s0
     oneshot
 
-service mpdecision /vendor/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root readproc
     disabled
 
-service qcamerasvr /vendor/bin/mm-qcamera-daemon
+service qcamerasvr /bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet graphics
 
-service qmuxd /vendor/bin/qmuxd
+service qmuxd /bin/qmuxd
     class core
-    user radio
-    group radio audio gps wakelock
+    user root
+    group radio audio gps wakelock oem_2950
 
 service qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
 
-service thermald /vendor/bin/thermald
+service thermald /bin/thermald
     class main
     user root
     group root
@@ -436,6 +435,7 @@ service wcnss-service /system/bin/wcnss_service
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
     swapon_all ./fstab.qcom
+	restart qcamerasvr
 
 # Property triggers begin here
 on property:bluetooth.hciattach=true

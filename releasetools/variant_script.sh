@@ -35,12 +35,12 @@ if [ "$variant" == "vzw" ] || [ "$variant" == "spr" ] || [ "$variant" == "gsm" ]
     cd $basedir
 
     for file in `find . -type f` ; do
-      mkdir -p `dirname /system/vendor/$file`
-      better_copy $file /system/vendor/$file
+      mkdir -p `dirname /system/$file`
+      better_copy $file /system/$file
     done
 
     for file in bin/* ; do
-      chmod 755 /system/vendor/$file
+      chmod 755 /system/$file
     done
   else
     echo "Expected source directory does not exist!"
