@@ -22,7 +22,7 @@ import os
 
 def FullOTA_InstallEnd(info):
   info.script.Mount("/system")
-  info.script.AppendExtra('run_program("/tmp/install/bin/variant_script.sh");')
+  info.script.AppendExtra('assert(run_program("/tmp/install/bin/variant_script.sh") == 0);')
   info.script.AppendExtra('ifelse(is_substring("0P3P10000", getprop("ro.boot.mid")), run_program("/sbin/sh", "-c", "sed -i \'s/ro.com.google.clientidbase=android-google/ro.com.google.clientidbase=android-verizon/g\' /system/build.prop"));')
   info.script.Unmount("/system")
 
