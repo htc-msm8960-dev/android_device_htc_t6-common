@@ -13,13 +13,12 @@
 /data/cam_socket.*              u:object_r:camera_socket:s0
 /dev/gemini.*                   u:object_r:camera_device:s0
 /dev/rawchip.*                  u:object_r:camera_device:s0
-/sys/camera_htccallback/htccallback u:object_r:camera_sysfs:s0
 
 # CIR
 /dev/ttyHSL2                    u:object_r:cir_device:s0
 /system/bin/cir_fw_update       u:object_r:cir_fw_update_exec:s0
 
-# CMHW
+# LOSHW
 /sys/devices/virtual/timed_output/vibrator/voltage_level   u:object_r:vibeamp_sysfs:s0
 
 # Encryption
@@ -53,6 +52,7 @@
 /dev/block/mmcblk0p23           u:object_r:modem_efs_partition_device:s0
 /dev/block/mmcblk0p30           u:object_r:modem_efs_partition_device:s0
 /dev/ttyUSB0                    u:object_r:radio_device:s0
+/sys/kernel/debug/ion/mm                                     u:object_r:ion_debugfs:s0
 
 # Mpdecision
 /data/system/default_values     u:object_r:mpctl_data_file:s0
