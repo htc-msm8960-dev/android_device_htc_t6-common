@@ -126,6 +126,8 @@ void * write_dummy_data(void *param)
     uint8_t *buffer;
     int size;
     struct pcm *pcm;
+    bool signaled = false;
+
     struct pcm_config config = {
         .channels = 2,
         .rate = 48000,
@@ -139,7 +141,7 @@ void * write_dummy_data(void *param)
 
     if (i2s_interface_en(true)) {
         ALOGE("%s: Failed to enable I2S interface\n", __func__);
-        return NULL;
+        goto err_signal;
     }
 
     pcm = pcm_open(0, 0, PCM_OUT, &config);
@@ -174,6 +176,14 @@ err_close_pcm:
     pcm_close(pcm);
 err_disable_i2s:
     i2s_interface_en(false);
+err_signal:
+    if (!signaled) {
+        pthread_mutex_lock(&amp->mutex);
+        amp->writing = true;
+        pthread_cond_signal(&amp->cond);
+        pthread_mutex_unlock(&amp->mutex);
+    }
+
     return NULL;
 }
 
