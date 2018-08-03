@@ -502,12 +502,12 @@ static int device__poll(struct sensors_poll_device_t *dev, sensors_event_t* data
 static int device__batch(struct sensors_poll_device_1 *dev, int handle,
         int flags, int64_t period_ns, int64_t timeout) {
     sensors_poll_context_t* ctx = (sensors_poll_context_t*) dev;
-    return ctx->batch(handle, flags, period_ns, timeout);
+    ctx->setDelay(handle, period_ns);
+    return 0;
 }
 
 static int device__flush(struct sensors_poll_device_1 *dev, int handle) {
-    sensors_poll_context_t* ctx = (sensors_poll_context_t*) dev;
-    return ctx->flush(handle);
+    return -EINVAL;
 }
 
 static int device__inject_sensor_data(struct sensors_poll_device_1 *dev,
@@ -598,19 +598,17 @@ static void lazy_init_modules() {
 }
 
 /*
- * Fix the flags of the sensor to be compliant with the API version
+
+ * Fix the fields of the sensor to be compliant with the API version
  * reported by the wrapper.
  */
-static void fix_sensor_flags(int version, sensor_t& sensor) {
-    if (version < SENSORS_DEVICE_API_VERSION_1_3) {
-        if (sensor.type == SENSOR_TYPE_PROXIMITY ||
-                sensor.type == SENSOR_TYPE_TILT_DETECTOR) {
-            int new_flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE;
-            ALOGV("Changing flags of handle=%d from %x to %x",
-                    sensor.handle, sensor.flags, new_flags);
-            sensor.flags = new_flags;
-        }
-    }
+static void fix_sensor_fields(sensor_t& sensor) {
+    /*
+     * Because batching and flushing don't work modify the
+     * sensor fields to not report any fifo counts.
+     */
+    sensor.fifoReservedEventCount = 0;
+    sensor.fifoMaxEventCount = 0;
 }
 
 /*
@@ -672,9 +670,7 @@ static void lazy_init_sensors_list() {
             ALOGV("module_index %d, local_handle %d, global_handle %d",
                     module_index, local_handle, global_handle);
 
-            int version = sub_hw_versions->at(*it);
-            fix_sensor_flags(version, mutable_sensor_list[mutable_sensor_index]);
-
+            fix_sensor_fields(mutable_sensor_list[mutable_sensor_index]);
             mutable_sensor_index++;
         }
         module_index++;
