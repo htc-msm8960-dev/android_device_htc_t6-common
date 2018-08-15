@@ -194,6 +194,10 @@ on fs
     mkdir /mnt/secdata 0755 system system
     mount tmpfs tmpfs /mnt/secdata mode=0755,gid=1000
 
+on post-fs
+    # Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
 on post-fs-data
     # Create symbolic links to mount points outside of /data for qcks
     symlink /mnt/qcks /data/qcks
