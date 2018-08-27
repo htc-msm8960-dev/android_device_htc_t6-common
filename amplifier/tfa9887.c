@@ -147,7 +147,7 @@ void * write_dummy_data(void *param)
     pcm = pcm_open(0, 0, PCM_OUT, &config);
     if (!pcm || !pcm_is_ready(pcm)) {
         ALOGE("pcm_open failed: %s", pcm_get_error(pcm));
-        if (pcm) {
+        if (pcm && errno != EBUSY) {
             goto err_close_pcm;
         }
         goto err_disable_i2s;
