@@ -77,6 +77,9 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2550136832
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
 
+# Extended Filesystem Support
+TARGET_EXFAT_DRIVER := exfat
+
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAVE_QCOM_FM := true
@@ -110,25 +113,25 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/fstab.recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+LZMA_RAMDISK_TARGETS := recovery
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-TARGET_RIL_VARIANT := caf
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 -include device/qcom/sepolicy/legacy-sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
+    /system/bin/mpdecision|libshims_atomic.so \
     /system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so \
-    /system/vendor/lib/libqc-opt.so|libqc-opt_shim.so \
     /system/lib/liblog.so|liblog_shim.so \
-    /system/lib/libvcsfp.so|libvcsfp_shim.so \
-    /system/vendor/lib/libril.so|libshim_ril.so \
-    /system/vendor/lib/libril-qc-qmi-1.so|libshim_ril.so
+    /system/vendor/lib/libril.so|libshims_ril.so \
+    /system/vendor/lib/libril-qc-qmi-1.so|libshims_ril.so \
+    /system/lib/libril-qc-qmi-1.so|libshims_ril.so
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools

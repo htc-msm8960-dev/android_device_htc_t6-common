@@ -5,7 +5,7 @@ import init.qcom.usb.rc
 on early-init
     symlink /data/tombstones /tombstones
 
-	# For firmwares
+    # For firmwares
     mkdir /firmware 0771 system system
     mkdir /vendor 0771 system system
     mkdir /vendor/firmware 0771 system system
@@ -17,7 +17,6 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 	
 on init
-    #export LD_PRELOAD libshim_atomic.so 
 
     symlink /sdcard /storage/sdcard0
 	

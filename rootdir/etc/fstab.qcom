@@ -16,3 +16,6 @@
 # External Storage Devices
 /devices/platform/msm_sdcc.3/mmc_host/mmc*	auto	auto	defaults	voldmanaged=sdcard2:auto,encryptable=userdata
 /devices/platform/msm_hsusb*	auto	auto	defaults	voldmanaged=usbdisk:auto
+
+#ZRAM
+#/dev/block/zram0                                      none                swap     defaults                                                                   zramsize=419430400
