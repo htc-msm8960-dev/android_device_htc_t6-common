@@ -35,6 +35,15 @@ LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
+LOCAL_SRC_FILES := bionic.cpp
+LOCAL_MODULE := libshims_bionic
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_32_BIT_ONLY := true
+LOCAL_SHARED_LIBRARIES := libc
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     ril_shim.cpp

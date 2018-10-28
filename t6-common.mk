@@ -73,6 +73,10 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     libbt-vendor
 
+# Bionic Shim
+PRODUCT_PACKAGES += \
+    libshims_bionic
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
@@ -99,8 +103,9 @@ PRODUCT_PACKAGES += \
 #   libvcsfp_shim
 
 # Gatekeeper HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl
+#PRODUCT_PACKAGES += \
+#    android.hardware.gatekeeper@1.0-impl \
+#    android.hardware.gatekeeper@1.0-service
 
 # Gello
 PRODUCT_PACKAGES += \
@@ -171,10 +176,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
-# OMX properties
- PRODUCT_PROPERTY_OVERRIDES += \
-    persist.media.treble_omx=false
-
 # Perf
 PRODUCT_PACKAGES += \
     libshims_atomic
@@ -182,6 +183,10 @@ PRODUCT_PACKAGES += \
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/vendor/etc/init.qcom.bt.sh
+
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/_hals.conf:system/vendor/etc/sensors/_hals.conf
 
 # Sensors HIDL interfaces
 PRODUCT_PACKAGES += \
@@ -195,6 +200,7 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     init.qcom.usb.rc \
     init.target.rc \
+    loggy.sh \
     ueventd.qcom.rc
 
 # USB HIDL interfaces
@@ -224,7 +230,7 @@ PRODUCT_PACKAGES += \
 
 # WiFi HIDL interfaces
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.1-service
+    android.hardware.wifi@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_cfg.dat \
