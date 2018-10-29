@@ -345,12 +345,12 @@ on boot
 
 # Services begin here
 
-service akmd /bin/akmd
+service akmd /system/bin/akmd
     class main
     user system
     group system misc input
 
-service cir_fw_update /bin/cir_fw_update -u cir.img
+service cir_fw_update /system/bin/cir_fw_update -u cir.img
     class main
     user root
     group root
@@ -363,9 +363,9 @@ service fm_dl /system/bin/setprop hw.fm.init 1
     disabled
     oneshot
 
-service netmgrd /bin/netmgrd
+service netmgrd /system/bin/netmgrd
     class core
-	user root
+    user root
     group root system wifi wakelock radio inet
 
 service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
@@ -375,28 +375,28 @@ service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     # seclabel u:r:bluetooth_loader:s0
     oneshot
 
-service mpdecision /bin/mpdecision --no_sleep --avg_comp
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root readproc
     disabled
 
-service qcamerasvr /bin/mm-qcamera-daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet graphics
 
-service qmuxd /bin/qmuxd
+service qmuxd /system/bin/qmuxd
     class core
     user root
     group radio audio gps wakelock oem_2950
 
-service qseecomd /vendor/bin/qseecomd
+service qseecomd /system/bin/qseecomd
     class core
     user root
     group root
 
-service thermald /bin/thermald
+service thermald /system/bin/thermald
     class main
     user root
     group root
