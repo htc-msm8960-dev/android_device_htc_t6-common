@@ -112,12 +112,12 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
+    libloc_eng \
+    libloc_core \
     libgps.utils \
-    gps.msm8960
-
-# GPS HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl
+    gps.msm8960 \
+    android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
