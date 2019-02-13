@@ -125,8 +125,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
-# -include device/qcom/sepolicy/sepolicy.mk
--include device/qcom/sepolicy/legacy-sepolicy.mk
+include device/qcom/sepolicy/legacy-sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 
 # Shims
