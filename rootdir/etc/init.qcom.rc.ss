@@ -401,6 +401,11 @@ service thermald /system/bin/thermald
     user root
     group root
 	
+#service vcsFPService /vendor/bin/vcsFPService
+#    class late_start
+#    user root
+#    group system
+	
 # WiFi
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
