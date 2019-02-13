@@ -62,6 +62,9 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_USES_NON_TREBLE_CAMERA := true
 
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+    /system/bin/mm-qcamera-daemon=21
+
 # Charge mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
