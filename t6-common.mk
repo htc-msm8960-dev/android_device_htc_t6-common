@@ -113,6 +113,7 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-service \
     libloc_eng \
     libloc_core \
     libgps.utils \
@@ -135,13 +136,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/max1187x_touchscreen_0.kl:system/usr/keylayout/max1187x_touchscreen_0.kl \
     $(LOCAL_PATH)/keylayout/Validity_Navigation_Sensor.kl:system/usr/keylayout/Validity_Navigation_Sensor.kl
 
-# Keymaster HIDL interfaces
+# Keystore HAL
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
-
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8960
+	keystore.msm8960 \
+	android.hardware.keymaster@3.0-impl \
+	android.hardware.keymaster@3.0-service
 
 # Log
 PRODUCT_PACKAGES += \
