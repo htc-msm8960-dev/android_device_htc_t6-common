@@ -136,12 +136,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/max1187x_touchscreen_0.kl:system/usr/keylayout/max1187x_touchscreen_0.kl \
     $(LOCAL_PATH)/keylayout/Validity_Navigation_Sensor.kl:system/usr/keylayout/Validity_Navigation_Sensor.kl
 
-# Keystore HAL
-PRODUCT_PACKAGES += \
-	keystore.msm8960 \
-	android.hardware.keymaster@3.0-impl \
-	android.hardware.keymaster@3.0-service
-
 # Log
 PRODUCT_PACKAGES += \
     liblog_shim
