@@ -101,10 +101,9 @@ PRODUCT_PACKAGES += \
 #   ValidityService \
 #   libvcsfp_shim
 
-# Gatekeeper HIDL interfaces
-#PRODUCT_PACKAGES += \
-#    android.hardware.gatekeeper@1.0-impl \
-#    android.hardware.gatekeeper@1.0-service
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
 
 # Gello
 PRODUCT_PACKAGES += \
@@ -112,14 +111,15 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
-    gps.msm8960
+    gps.conf \
+    gps.msm8960 \
+    libloc_eng \
+    libloc_core \
+    libgps.utils
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
-    $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
-    $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
+# GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
 
 # IDC
 PRODUCT_COPY_FILES += \
@@ -134,6 +134,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
     $(LOCAL_PATH)/keylayout/max1187x_touchscreen_0.kl:system/usr/keylayout/max1187x_touchscreen_0.kl \
     $(LOCAL_PATH)/keylayout/Validity_Navigation_Sensor.kl:system/usr/keylayout/Validity_Navigation_Sensor.kl
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    keystore.msm8960 \
+    android.hardware.keymaster@3.0-impl
 
 # Log
 PRODUCT_PACKAGES += \
