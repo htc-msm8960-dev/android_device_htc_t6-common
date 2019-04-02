@@ -372,7 +372,7 @@ service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
-    # seclabel u:r:bluetooth_loader:s0
+    seclabel u:r:bluetooth_loader:s0
     oneshot
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
@@ -437,10 +437,10 @@ on property:sys.boot_completed=1
 	#start qcamerasvr
 
 # Property triggers begin here
-on property:bluetooth.hciattach=true
+on property:vendor.bluetooth.hciattach=true
     start hciattach
 
-on property:bluetooth.hciattach=false
+on property:vendor.bluetooth.hciattach=false
     setprop bluetooth.status off
 
 on property:init.svc.bootanim=stopped
