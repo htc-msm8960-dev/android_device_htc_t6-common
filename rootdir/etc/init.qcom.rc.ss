@@ -240,7 +240,7 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    #start qcamerasvr
+    start qcamerasvr
 
     # 4.3 requires this
     chmod 0644 /proc/cmdline
@@ -428,7 +428,7 @@ service wcnss-service /system/bin/wcnss_service
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
     swapon_all ./fstab.qcom
-	#start qcamerasvr
+	restart qcamerasvr
 
 # Property triggers begin here
 on property:vendor.bluetooth.hciattach=true
