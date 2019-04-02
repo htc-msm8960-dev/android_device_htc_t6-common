@@ -20,7 +20,8 @@ $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/overlay-rr
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
