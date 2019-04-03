@@ -186,8 +186,8 @@ PRODUCT_COPY_FILES += \
 
 # Sensors HIDL interfaces
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
-    sensors.msm8960
+    android.hardware.sensors@1.0-impl.htc8960 \
+    android.hardware.sensors@1.0-service.htc8960
 
 # Ramdisk
 PRODUCT_PACKAGES += \
