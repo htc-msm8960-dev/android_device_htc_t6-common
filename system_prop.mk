@@ -12,6 +12,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     use.dedicated.device.for.voip=true \
     use.voice.path.for.pcm.voip=true
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=smd
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cam.hw.version=t6
