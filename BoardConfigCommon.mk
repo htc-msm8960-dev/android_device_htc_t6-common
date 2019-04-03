@@ -64,7 +64,6 @@ TARGET_USES_NON_TREBLE_CAMERA := true
 
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/bin/mm-qcamera-daemon=21 \
-    /system/bin/mediaserver=21 \
     /system/bin/qseecomd=21
 
 # Charge mode
