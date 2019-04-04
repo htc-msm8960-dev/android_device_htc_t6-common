@@ -160,8 +160,5 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/wlan/parameters/fwpath"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-# USB
-TARGET_USES_LEGACY_ADB_INTERFACE := true
-
 # inherit from the proprietary version
 -include vendor/htc/t6-common/BoardConfigVendor.mk
