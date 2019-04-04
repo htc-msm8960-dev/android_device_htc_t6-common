@@ -24,7 +24,7 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-rr
 
 # System properties
-include $(LOCAL_PATH)/system_prop.mk
+-include $(LOCAL_PATH)/system_prop.mk
 
 # Permissions
 PRODUCT_COPY_FILES += \
