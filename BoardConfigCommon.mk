@@ -164,5 +164,8 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/wlan/parameters/fwpath"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+# Security patch level
+VENDOR_SECURITY_PATCH := 2015-08-05
+
 # inherit from the proprietary version
 -include vendor/htc/t6-common/BoardConfigVendor.mk
