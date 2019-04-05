@@ -66,7 +66,8 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := camera_parameters_htc_msm8960
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/bin/mm-qcamera-daemon=21 \
     /system/bin/mediaserver=21 \
-    /system/bin/qseecomd=21
+    /system/bin/qseecomd=21 \
+    /system/vendor/bin/hw/android.hardware.sensors@1.0-service.htc8960=21
 
 # Charge mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
