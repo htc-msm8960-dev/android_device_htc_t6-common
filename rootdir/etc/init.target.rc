@@ -4,7 +4,7 @@ service kickstartgsm /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config 
     class core
     user root
     oneshot
-	
+
 service kickstartcdma /system/bin/qcks -1 modem_st1 -2 modem_st2 -3 radio_config -4 cdma_record -i /firmware/mdm/image/
     class core
     user root
@@ -17,7 +17,7 @@ service ril-daemon-dsda /system/vendor/bin/rild_qsc -c 2
     socket rild-debug-dsda stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag qcom_diag
-	disabled
+    disabled
 
 on property:ro.product.device=t6vzw
     stop kickstartgsm
@@ -37,7 +37,8 @@ on property:ro.product.device=t6dug
     start kickstartcdma
     start ril-daemon-dsda
 
- service loggy /system/bin/sh /loggy.sh
-     class main
-     user root
-     oneshot
+service loggy /system/bin/sh /loggy.sh
+    class main
+    user root
+    oneshot
+    disabled
