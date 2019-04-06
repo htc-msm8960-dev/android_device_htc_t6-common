@@ -98,9 +98,6 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 # HIDL
 DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 
-# Keymaster
-TARGET_KEYMASTER_WAIT_FOR_QSEE := true
-
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
