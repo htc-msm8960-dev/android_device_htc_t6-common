@@ -118,11 +118,11 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.conf \
     gps.msm8960 \
-    libloc_eng \
-    libloc_core \
-    libgps.utils
+    libloc_eng
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # GNSS HAL
 PRODUCT_PACKAGES += \
