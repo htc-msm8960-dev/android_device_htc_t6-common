@@ -242,4 +242,11 @@
     <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
          true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">true</bool>
+
+    <!-- Values for GPS configuration -->
+    <string-array translatable="false" name="config_gpsParameters">
+        <item>XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin</item>
+        <item>XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin</item>
+        <item>XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin</item>
+    </string-array>
 </resources>
