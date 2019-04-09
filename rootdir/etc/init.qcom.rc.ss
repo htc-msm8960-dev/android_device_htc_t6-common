@@ -3,23 +3,17 @@ import init.target.rc
 import init.qcom.usb.rc
 
 on early-init
-    symlink /data/tombstones /tombstones
-
-    # For firmwares
-    mkdir /firmware 0771 system system
-    mkdir /vendor 0771 system system
-    mkdir /vendor/firmware 0771 system system
-    mkdir /firmware/mdm 0771 system system
-    mkdir /firmware/q6 0771 system system
-    mkdir /firmware/wcnss 0771 system system
 
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     chown system system /sys/kernel/debug/kgsl/proc
-	
+
+    # Allow QMUX daemon to assign port open wait time
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    # Init modem
+    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
+
 on init
 
-    symlink /sdcard /storage/sdcard0
-	
     # Setup ZRAM options
     write /sys/block/zram0/comp_algorithm lz4
     write /sys/block/zram0/max_comp_streams 2
@@ -174,6 +168,14 @@ on fs
     mkdir /devlog 0700 root root
     mkdir /ramdump 0700 root root
 
+    # For firmwares
+    mkdir /firmware 0771 system system
+    mkdir /vendor 0771 system system
+    mkdir /vendor/firmware 0771 system system
+    mkdir /firmware/mdm 0771 system system
+    mkdir /firmware/q6 0771 system system
+    mkdir /firmware/wcnss 0771 system system
+
     mount_all ./fstab.qcom
 
     mkdir /mnt/qcks 0700 root system
@@ -196,6 +198,7 @@ on post-fs-data
 
     # Tombstones
     mkdir /data/tombstones 0771 system system
+    symlink /data/tombstones /tombstones
     mkdir /tombstones/mdm 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -239,6 +242,10 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+
+    #Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
+    chmod 2770 /dev/socket/netmgr
 
     start qcamerasvr
 
@@ -366,7 +373,7 @@ service fm_dl /system/bin/setprop hw.fm.init 1
 service netmgrd /system/bin/netmgrd
     class core
     user root
-    group root system wifi wakelock radio inet
+    group root system wifi wakelock radio inet oem_2950
 
 service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
@@ -400,12 +407,12 @@ service thermald /system/bin/thermald
     class main
     user root
     group root
-	
+
 #service vcsFPService /vendor/bin/vcsFPService
 #    class late_start
 #    user root
 #    group system
-	
+
 # WiFi
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -434,7 +441,7 @@ service wcnss-service /system/bin/wcnss_service
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
     swapon_all ./fstab.qcom
-	restart qcamerasvr
+    restart qcamerasvr
 
 # Property triggers begin here
 on property:bluetooth.hciattach=true
@@ -443,11 +450,6 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
-on property:init.svc.bootanim=stopped
-    # Allow QMUX daemon to assign port open wait time
-    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-    # Init modem
-    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
 on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0
