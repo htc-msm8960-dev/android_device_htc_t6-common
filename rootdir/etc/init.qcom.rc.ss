@@ -235,9 +235,6 @@ on post-fs-data
     # prepare kernel for wifi module
     setprop ro.product.wireless WCN3660
 
-    # We will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
-
     setprop qcom.audio.init complete
 
     # If there is no fs-post-data action in the init.<device>.rc file, you
