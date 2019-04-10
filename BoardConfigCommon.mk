@@ -121,7 +121,6 @@ LZMA_RAMDISK_TARGETS := recovery
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
