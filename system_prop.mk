@@ -52,7 +52,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.baseband.arch=mdm
+    ro.baseband.arch=mdm \
+    persist.radio.adb_log_on=1
 
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
