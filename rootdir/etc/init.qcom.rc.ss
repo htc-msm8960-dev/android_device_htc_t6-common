@@ -455,6 +455,9 @@ service wcnss-service /system/bin/wcnss_service
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
     swapon_all ./fstab.qcom
+    restart ril-daemon
+    restart ril-daemon2
+    restart netmgrd
     restart qcamerasvr
 
 # Property triggers begin here
