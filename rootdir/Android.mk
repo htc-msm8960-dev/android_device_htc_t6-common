@@ -32,23 +32,13 @@ LOCAL_SRC_FILES		:= etc/init.qcom.power.rc
 LOCAL_MODULE_PATH	:= $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
-ifneq ($(filter t6,$(TARGET_DEVICE)),) #single sim
 include $(CLEAR_VARS)
 LOCAL_MODULE		:= init.qcom.rc
 LOCAL_MODULE_TAGS	:= optional eng
 LOCAL_MODULE_CLASS	:= ETC
-LOCAL_SRC_FILES		:= etc/init.qcom.rc.ss
+LOCAL_SRC_FILES		:= etc/init.qcom.rc
 LOCAL_MODULE_PATH	:= $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
-else #dual sim
-include $(CLEAR_VARS)
-LOCAL_MODULE		:= init.qcom.rc
-LOCAL_MODULE_TAGS	:= optional eng
-LOCAL_MODULE_CLASS	:= ETC
-LOCAL_SRC_FILES		:= etc/init.qcom.rc.ds
-LOCAL_MODULE_PATH	:= $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
-endif
 
 include $(CLEAR_VARS)
 LOCAL_MODULE		:= ueventd.qcom.rc
