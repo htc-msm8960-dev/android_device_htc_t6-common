@@ -7,11 +7,6 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     chown system system /sys/kernel/debug/kgsl/proc
 
-    # Allow QMUX daemon to assign port open wait time
-    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-    # Init modem
-    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
-
 on init
 
     # Setup ZRAM options
@@ -450,6 +445,11 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
+on property:init.svc.bootanim=stopped
+    # Allow QMUX daemon to assign port open wait time
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    # Init modem
+    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
 on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0
