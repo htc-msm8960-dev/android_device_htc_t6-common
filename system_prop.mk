@@ -44,7 +44,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Performance
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=/system/vendor/lib/libqti-perfd-client.so
+    ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
