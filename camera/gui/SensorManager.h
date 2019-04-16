@@ -51,7 +51,7 @@ public:
     SensorManager();
     ~SensorManager();
 
-    ssize_t getSensorList(Sensor const* const** list) ;
+    ssize_t getSensorList(Sensor const* const** list);
     Sensor const* getDefaultSensor(int type);
     sp<SensorEventQueue> createEventQueue();
 
@@ -59,7 +59,7 @@ private:
     // DeathRecipient interface
     void sensorManagerDied();
 
-    status_t assertStateLocked() ;
+    status_t assertStateLocked();
 
 private:
     mutable Mutex mLock;
