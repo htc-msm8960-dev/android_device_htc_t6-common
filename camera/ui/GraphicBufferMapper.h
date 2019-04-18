@@ -41,7 +41,7 @@ public:
     status_t registerBuffer(buffer_handle_t handle);
 
     status_t unregisterBuffer(buffer_handle_t handle);
-
+    
     status_t lock(buffer_handle_t handle,
             int usage, const Rect& bounds, void** vaddr);
 
@@ -50,6 +50,14 @@ public:
 
     status_t unlock(buffer_handle_t handle);
 
+    status_t lockAsync(buffer_handle_t handle,
+            int usage, const Rect& bounds, void** vaddr, int fenceFd);
+
+    status_t lockAsyncYCbCr(buffer_handle_t handle,
+            int usage, const Rect& bounds, android_ycbcr *ycbcr, int fenceFd);
+
+    status_t unlockAsync(buffer_handle_t handle, int *fenceFd);
+    
     // dumps information about the mapping of this handle
     void dump(buffer_handle_t handle);
 
