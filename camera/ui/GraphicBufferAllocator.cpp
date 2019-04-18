@@ -66,11 +66,11 @@ void GraphicBufferAllocator::dump(String8& result) const
         if (rec.size) {
             snprintf(buffer, SIZE, "%10p: %7.2f KiB | %4u (%4u) x %4u | %8X | 0x%08x\n",
                     list.keyAt(i), rec.size/1024.0f,
-                    rec.width, rec.stride, rec.height, rec.format, rec.usage);
+                    rec.w, rec.s, rec.h, rec.format, rec.usage);
         } else {
             snprintf(buffer, SIZE, "%10p: unknown     | %4u (%4u) x %4u | %8X | 0x%08x\n",
                     list.keyAt(i),
-                    rec.width, rec.stride, rec.height, rec.format, rec.usage);
+                    rec.w, rec.s, rec.h, rec.format, rec.usage);
         }
         result.append(buffer);
         total += rec.size;
@@ -90,16 +90,14 @@ void GraphicBufferAllocator::dumpToSystemLog()
     ALOGD("%s", s.string());
 }
 
-status_t GraphicBufferAllocator::alloc(uint32_t width, uint32_t height,
-        PixelFormat format, int usage, buffer_handle_t* handle,
-        int32_t* stride)
+status_t GraphicBufferAllocator::alloc(uint32_t w, uint32_t h, PixelFormat format,
+        int usage, buffer_handle_t* handle, int32_t* stride)
 {
     ATRACE_CALL();
-
     // make sure to not allocate a N x 0 or 0 x N buffer, since this is
     // allowed from an API stand-point allocate a 1x1 buffer instead.
-    if (!width || !height)
-        width = height = 1;
+    if (!w || !h)
+        w = h = 1;
 
     // we have a h/w allocator and h/w buffer is requested
     status_t err;
@@ -108,13 +106,13 @@ status_t GraphicBufferAllocator::alloc(uint32_t width, uint32_t height,
     usage &= GRALLOC_USAGE_ALLOC_MASK;
 
     int outStride = 0;
-    err = mAllocDev->alloc(mAllocDev, static_cast<int>(width),
-            static_cast<int>(height), format, static_cast<int>(usage), handle,
+    err = mAllocDev->alloc(mAllocDev, static_cast<int>(w),
+            static_cast<int>(h), format, static_cast<int>(usage), handle,
             &outStride);
     *stride = static_cast<uint32_t>(outStride);
 
     ALOGW_IF(err, "alloc(%u, %u, %d, %08x, ...) failed %d (%s)",
-            width, height, format, usage, err, strerror(-err));
+            w, h, format, usage, err, strerror(-err));
 
     if (err == NO_ERROR) {
         Mutex::Autolock _l(sLock);
@@ -126,12 +124,12 @@ status_t GraphicBufferAllocator::alloc(uint32_t width, uint32_t height,
             bpp = 0;
         }
         alloc_rec_t rec;
-        rec.width = width;
-        rec.height = height;
-        rec.stride = *stride;
+        rec.w = w;
+        rec.h = h;
+        rec.s = *stride;
         rec.format = format;
         rec.usage = usage;
-        rec.size = static_cast<size_t>(height * (*stride) * bpp);
+        rec.size = h * stride[0] * bpp;
         list.add(*handle, rec);
     }
 

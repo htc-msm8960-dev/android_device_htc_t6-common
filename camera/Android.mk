@@ -9,15 +9,7 @@ LOCAL_SRC_FILES := \
      gui/SensorManager.cpp \
      ui/GraphicBuffer.cpp \
      ui/GraphicBufferAllocator.cpp \
-     ui/GraphicBufferMapper.cpp \
-     symbols/Parcel.cpp \
-     utils/Looper.cpp \
-     utils/VectorImpl.cpp
-
-LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/include \
-    external/safe-iop/include \
-    system/core/libutils
+     ui/GraphicBufferMapper.cpp
 
 LOCAL_SHARED_LIBRARIES := \
     libbinder libcutils libgui libhardware liblog libsensor libsync libui libutils

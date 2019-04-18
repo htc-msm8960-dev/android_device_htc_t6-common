@@ -66,17 +66,18 @@ public:
         USAGE_HW_COMPOSER       = GRALLOC_USAGE_HW_COMPOSER,
         USAGE_HW_VIDEO_ENCODER  = GRALLOC_USAGE_HW_VIDEO_ENCODER,
         USAGE_HW_MASK           = GRALLOC_USAGE_HW_MASK,
+
+        USAGE_CURSOR            = GRALLOC_USAGE_CURSOR,
     };
 
     GraphicBuffer();
 
     // creates w * h buffer
-    GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
-            uint32_t inUsage);
+    GraphicBuffer(uint32_t w, uint32_t h, PixelFormat format, uint32_t usage);
 
     // create a buffer from an existing handle
-    GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
-            uint32_t inUsage, uint32_t inStride, native_handle_t* inHandle,
+    GraphicBuffer(uint32_t w, uint32_t h, PixelFormat format,
+            uint32_t usage, uint32_t stride, native_handle_t* handle,
             bool keepOwnership);
 
     // create a buffer from an existing ANativeWindowBuffer
@@ -91,17 +92,21 @@ public:
     uint32_t getUsage() const           { return static_cast<uint32_t>(usage); }
     PixelFormat getPixelFormat() const  { return format; }
     Rect getBounds() const              { return Rect(width, height); }
+    uint64_t getId() const              { return mId; }
 
-    status_t reallocate(uint32_t inWidth, uint32_t inHeight,
-            PixelFormat inFormat, uint32_t inUsage);
+    status_t reallocate(uint32_t w, uint32_t h, PixelFormat f, uint32_t usage);
 
-    status_t lock(uint32_t inUsage, void** vaddr);
-    status_t lock(uint32_t inUsage, const Rect& rect, void** vaddr);
+    status_t lock(uint32_t usage, void** vaddr);
+    status_t lock(uint32_t usage, const Rect& rect, void** vaddr);
     // For HAL_PIXEL_FORMAT_YCbCr_420_888
-    status_t lockYCbCr(uint32_t inUsage, android_ycbcr *ycbcr);
-    status_t lockYCbCr(uint32_t inUsage, const Rect& rect,
-            android_ycbcr *ycbcr);
+    status_t lockYCbCr(uint32_t usage, android_ycbcr *ycbcr);
+    status_t lockYCbCr(uint32_t usage, const Rect& rect, android_ycbcr *ycbcr);
     status_t unlock();
+    status_t lockAsync(uint32_t usage, void** vaddr, int fenceFd);
+    status_t lockAsync(uint32_t usage, const Rect& rect, void** vaddr, int fenceFd);
+    status_t lockAsyncYCbCr(uint32_t usage, android_ycbcr *ycbcr, int fenceFd);
+    status_t lockAsyncYCbCr(uint32_t usage, const Rect& rect, android_ycbcr *ycbcr, int fenceFd);
+    status_t unlockAsync(int *fenceFd);
 
     ANativeWindowBuffer* getNativeBuffer() const;
 
@@ -140,8 +145,8 @@ private:
     GraphicBuffer& operator = (const GraphicBuffer& rhs);
     const GraphicBuffer& operator = (const GraphicBuffer& rhs) const;
 
-    status_t initSize(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
-            uint32_t inUsage);
+    status_t initSize(uint32_t w, uint32_t h, PixelFormat inFormat,
+            uint32_t usage);
 
     void free_handle();
 
@@ -151,6 +156,8 @@ private:
     // If we're wrapping another buffer then this reference will make sure it
     // doesn't get freed.
     sp<ANativeWindowBuffer> mWrappedBuffer;
+
+    uint64_t mId;
 };
 
 }; // namespace android
