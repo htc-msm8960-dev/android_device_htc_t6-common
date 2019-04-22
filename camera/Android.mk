@@ -7,9 +7,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SRC_FILES := \
      gui/SensorManager.cpp \
-     ui/GraphicBuffer.cpp \
-     ui/GraphicBufferAllocator.cpp \
-     ui/GraphicBufferMapper.cpp
+     ui/GraphicBuffer.cpp
 
 LOCAL_SHARED_LIBRARIES := \
     libbinder libcutils libgui libhardware liblog libsensor libsync libui libutils
