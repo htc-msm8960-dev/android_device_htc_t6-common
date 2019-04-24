@@ -551,7 +551,7 @@ static int fingerprint_open(const hw_module_t* module, const char __unused *id,
     }
 
     vdev->device.common.tag = HARDWARE_DEVICE_TAG;
-    vdev->device.common.version = HARDWARE_MODULE_API_VERSION(2, 0);
+    vdev->device.common.version = HARDWARE_MODULE_API_VERSION(2, 1);
     vdev->device.common.module = (struct hw_module_t*)module;
     vdev->device.common.close = fingerprint_close;
 
