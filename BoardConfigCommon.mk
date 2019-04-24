@@ -70,7 +70,9 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/vendor/bin/hw/android.hardware.sensors@1.0-service.htc8960=21 \
     /system/vendor/bin/hw/android.hardware.media.omx@1.0-service=21 \
     /system/vendor/bin/hw/rild=27 \
-    /system/bin/audioserver=21
+    /system/bin/audioserver=21 \
+    /system/vendor/bin/vcsFPService=21 \
+    /system/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service=21
 
 # Charge mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
