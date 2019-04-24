@@ -18,10 +18,15 @@
 
 package com.validity.fingerprint;
 
-public class EnrollCaptureStatus{
-  public int badSwipes;
-  public int imageQuality;
-  public int progress;
-  public int templateResult;
-  public int totalSwipes;
+public class EnrollCaptureStatus {
+
+    public int badSwipes;
+    public int cumulativeCoverageMap;
+    public int currentCoverageMap;
+    public int imageQuality;
+    public int positionFeedback;
+    public int progress;
+    public int templateResult;
+    public int totalSwipes;
+
 }

@@ -57,21 +57,6 @@ public class Fingerprint extends FingerprintCore {
     public static final int VCS_WOF_STATE_INACTIVE = 0;
     public static final int VCS_WOF_STATE_ACTIVE = 1;
 
-public Fingerprint(Context paramContext)
-  {
-    super(paramContext);
-  }
-  
-  public Fingerprint(Context paramContext, FingerprintCore.EventListener paramEventListener)
-  {
-    super(paramContext, paramEventListener);
-  }
-  
-  public static int getServiceStatus()
-  {
-    return jniGetServiceStatus();
-  }
-  
   private native int jniEnableSensorDevice(int paramInt);
   
   private native int jniEnrollUser(Object paramObject);
@@ -91,65 +76,63 @@ public Fingerprint(Context paramContext)
   private native int jniRemoveEnrolledFinger(Object paramObject);
   
   private native int jniRequest(int paramInt, Object paramObject);
-  
-  public int enableSensorDevice(boolean paramBoolean)
-  {
-    if (paramBoolean) {}
-    for (int i = 1;; i = 0) {
-      return jniEnableSensorDevice(i);
+
+    public Fingerprint(Context ctx) {
+        super(ctx);
     }
-  }
-  
-  public int enroll(EnrollUser paramEnrollUser)
-  {
-    if (this.mOperation != 150) {
-      return -1;
+
+    public Fingerprint(Context ctx, FingerprintCore.EventListener listener) {
+        super(ctx, listener);
     }
-    int i = jniEnrollUser(paramEnrollUser);
-    if (i == 0) {
-      this.mOperation = 151;
+
+    public int enableSensorDevice(boolean enable) {
+        if (mOperation != 150)
+            return VCS_RESULT_ALREADY_INPROGRESS;
+        return jniEnableSensorDevice((enable? 1: 0));
     }
-    return i;
-  }
+
+    public int enableWakeOnFinger() {
+        return jniRequest(VCS_REQUEST_ENABLE_WOF, null);
+    }
+
+    public int enroll(EnrollUser enrollInfo) {
+        int ret = VCS_RESULT_FAILED;
+        if (mOperation != 150)
+            return ret;
+        ret = jniEnrollUser(enrollInfo);
+        if (ret == VCS_RESULT_OK)
+            mOperation = 151;
+        return ret;
+    }
+
+    public int getSensorStatus() {
+        if (mOperation != 150)
+            return VCS_RESULT_ALREADY_INPROGRESS;
+        return jniGetSensorStatus();
+    }
+
+    public int getWakeOnFingerState(VcsInt wofState) {
+        if (wofState == null)
+            return VCS_RESULT_INVALID_ARGUMENT;
+        return jniRequest(VCS_REQUEST_GET_WOF_STATE, wofState);
+    }
+
+    public int notify(int code, Object data) {
+        return jniNotify(code, data);
+    }
+
+    @Deprecated
+    public int removeEnrolledFinger(EnrollUser paramEnrollUser)
+    {
+        return jniRemoveEnrolledFinger(paramEnrollUser);
+    }
   
-  public int getSensorStatus()
-  {
-    return jniGetSensorStatus();
-  }
-  
-  public int launchNav()
-  {
-    return jniLaunchNav();
-  }
-  
-  public int navStart()
-  {
-    return jniNavStart();
-  }
-  
-  public int navStop()
-  {
-    return jniNavStop();
-  }
-  
-  public int notify(int paramInt, Object paramObject)
-  {
-    return jniNotify(paramInt, paramObject);
-  }
-  
-  @Deprecated
-  public int removeEnrolledFinger(EnrollUser paramEnrollUser)
-  {
-    return jniRemoveEnrolledFinger(paramEnrollUser);
-  }
-  
-  public int removeEnrolledFinger(RemoveEnroll paramRemoveEnroll)
-  {
-    return jniRemoveEnrolledFinger(paramRemoveEnroll);
-  }
-  
-  public int request(int paramInt, Object paramObject)
-  {
-    return jniRequest(paramInt, paramObject);
-  }
+    public int removeEnrolledFinger(RemoveEnroll paramRemoveEnroll)
+    {
+        return jniRemoveEnrolledFinger(paramRemoveEnroll);
+    }
+
+    public int request(int command, Object data) {
+        return jniRequest(command, data);
+    }
 }

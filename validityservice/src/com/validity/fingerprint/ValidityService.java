@@ -68,7 +68,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
     private int mIdentifyImage = 0;
 
     Fingerprint fp = new Fingerprint(this, this);
-	
+
     /** We should set a password after we enroll one finger. This password is "123456q"
      *  The password hash method is SHA-1.
      */
@@ -101,21 +101,17 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
     @Override
     public void onCreate() {
         super.onCreate();
-		Log.d("VCS", "enable " + fp.enableSensorDevice(true));
         VLog.v("onCreate");
         try {
             mServerSocket = new LocalServerSocket(SOCKET_NAME);
             mServerSocketCB = new LocalServerSocket(SOCKET_NAME_CB);
-
         } catch (IOException e) {
             VLog.v("in onCreate, making server socket: " + e);
             return;
         }
-
         Thread t_server = new Thread() {
             @Override
             public void run() {
-                
                 LocalSocket socket = null;
                 while (true) {
                     try {
@@ -178,7 +174,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                         for (int i = 0;i < count;i++){
                             VLog.d("data["+i+"]="+data[i]);
                         }
-						EnrollUser enrollInfo = new EnrollUser();
+                        EnrollUser enrollInfo = new EnrollUser();
                         switch (data[0]) {
                             case CALL_INITSERVICE:
                                 ret = initService();
@@ -190,9 +186,8 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                                 mEnrollBad = false;
                                 mEnrollRepeatCount = 8;
                                 //fp.verifyPassword(userId, pwdhash);
-				
-								enrollInfo.userId = userId;
-								enrollInfo.fingerIndex = fingerIndex;
+                                enrollInfo.userId = userId;
+                                enrollInfo.fingerIndex = fingerIndex;
                                 ret = fp.enroll(enrollInfo);
                                 break;
                             case CALL_CANCEL:
@@ -201,8 +196,8 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                             case CALL_REMOVE:
                                 userId = "User_" + data[1];
                                 fingerIndex = data[2];
-								enrollInfo.userId = userId;
-								enrollInfo.fingerIndex = fingerIndex;
+                                enrollInfo.userId = userId;
+                                enrollInfo.fingerIndex = fingerIndex;
                                 ret = fp.removeEnrolledFinger(enrollInfo);
                                 if (fingerIndex == VcsEvents.FINGER_INDEX_ALL) {
                                     notify_end();
@@ -220,8 +215,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                             case CALL_GET_ENROLLED_FINGER_LIST:
                                 userId = "User_" + data[1];
                                 VcsInt fingermask = new VcsInt();
-                                Log.d("VCS", "getEnrolledFingerList " + fp.getEnrolledFingerList(userId, fingermask));
-                                Log.d("VCS", "fingermask.num " + fingermask.num);
+                                fp.getEnrolledFingerList(userId, fingermask);
                                 ret = fingermask.num;
                                 break;
                             case CALL_CLEANUP:
@@ -276,8 +270,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         return mIdresult.fingerIndex;
     }
 
-    public void onEvent(FingerprintEvent event) {
-		Log.d("VCS", "onEvent");
+    public void onEvent(final FingerprintEvent event) {
         VLog.v("identify onEvent: receive event :" + event.eventId);
         OutputStreamWriter osr = null;
         try {
@@ -390,12 +383,10 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-VLog.d("VCS:" + intent.getAction());
-                //onScreenOn();
+                onScreenOn();
             }
             else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-VLog.d("VCS:" + intent.getAction());
-                //onScreenOff();
+                onScreenOff();
             }
             else VLog.e("Unknown intent:" + intent.getAction());
         }
