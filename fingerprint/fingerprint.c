@@ -33,7 +33,7 @@
 #include "fp_t6.h"
 
 #define MAX_COMM_CHARS 128
-#define MAX_NUM_FINGERS 3
+#define MAX_NUM_FINGERS 5
 #define SOCKET_NAME_SEND "validityservice"
 #define SOCKET_NAME_RECEIVE "validityservice_callback"
 
@@ -496,7 +496,7 @@ static void* listenerSocket(void* data) {
             }
         } else {
             ALOGE("fingerprint listener receive failure");
-            break;
+            //break;
         }
     }
 
