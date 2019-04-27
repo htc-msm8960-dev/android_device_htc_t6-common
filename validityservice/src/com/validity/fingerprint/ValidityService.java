@@ -27,6 +27,7 @@ import android.net.LocalServerSocket;
 import android.net.LocalSocket;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 
 import java.io.IOException;
@@ -78,7 +79,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         int ret = fp.getSensorStatus();
         VLog.i("init: ret=" + ret);
         VLog.i("init: version=" + fp.getVersion());
-        notify_start();
+        //notify_start();
         if (ret != 0 && ret != 1004) return -1;
         return 0;
     }
@@ -109,7 +110,17 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
             VLog.v("in onCreate, making server socket: " + e);
             return;
         }
-        Thread t_server = new Thread() {
+
+        startListeners();
+        ScreenReceiver receiver = new ScreenReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(receiver, filter);
+    }
+
+    private void startListeners(){
+            Thread t_server = new Thread() {
             @Override
             public void run() {
                 LocalSocket socket = null;
@@ -148,12 +159,6 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         };
         t_server.start();
         t_server_cb.start();
-
-        ScreenReceiver receiver = new ScreenReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(receiver, filter);
     }
 
     private void startService(final LocalSocket socket) {
@@ -184,7 +189,7 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                                 fingerIndex = data[2];
                                 mLastEnrollFingerindex = fingerIndex;
                                 mEnrollBad = false;
-                                mEnrollRepeatCount = 8;
+                                mEnrollRepeatCount = 3;
                                 //fp.verifyPassword(userId, pwdhash);
                                 enrollInfo.userId = userId;
                                 enrollInfo.fingerIndex = fingerIndex;
@@ -274,8 +279,12 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         VLog.v("identify onEvent: receive event :" + event.eventId);
         OutputStreamWriter osr = null;
         try {
-            OutputStream os = mSocketCB.getOutputStream();
-            osr = new OutputStreamWriter(os);
+            if(mSocketCB == null){
+                startListeners();
+            }else{
+                OutputStream os = mSocketCB.getOutputStream();
+                osr = new OutputStreamWriter(os);
+            }
             String str = null;
             switch (event.eventId) {
                 case VcsEvents.VCS_EVT_EIV_FINGERPRINT_CAPTURE_REDUNDANT:
@@ -308,7 +317,9 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                      break;
                 case VcsEvents.VCS_EVT_EIV_FINGERPRINT_CAPTURED:
                      FingerprintBitmap data_map = (FingerprintBitmap)event.eventData;
-                     mIdentifyImage = convertImageQuality(data_map.quality);
+                     if(data_map != null){
+                        mIdentifyImage = convertImageQuality(data_map.quality);
+                     }
                      break;
                 case VcsEvents.VCS_EVT_VERIFY_SUCCESS:
                 case VcsEvents.VCS_EVT_IDENTIFY_SUCCESS:
@@ -316,14 +327,13 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                      str = CB_AUTHENTICATED + ":" + getIdentifyFid();
                      break;
                 case VcsEvents.VCS_EVT_SENSOR_REMOVED:
-                     mIsIdentify = false;
-                     str = CB_ERROR + ":" + 1; //FINGERPRINT_ERROR_HW_UNAVAILABLE
-                     VLog.e("identify onEvent: identify error, result=" + (int)event.eventData);
+                     str = CB_ERROR + ":" + 2; //FINGERPRINT_ERROR_UNABLE_TO_PROCESS
+                     VLog.e("identify onEvent: identify error, [VcsEvents.VCS_EVT_SENSOR_REMOVED] result=" + (int)event.eventData);
                      break;
                 case VcsEvents.VCS_EVT_VERIFY_FAILED:
                 case VcsEvents.VCS_EVT_IDENTIFY_FAILED:
                      mIsIdentify = false;
-                     VLog.e("identify onEvent: identify error, result=" + (int)event.eventData);
+                     VLog.e("identify onEvent: identify error, [VcsEvents.VCS_EVT_IDENTIFY_FAILED] result=" + (int)event.eventData);
                      switch ((int)event.eventData) {
                          case VcsEvents.VCS_RESULT_BAD_QUALITY_IMAGE:
                               str = CB_ACQUIRED + ":" + mIdentifyImage;
@@ -338,9 +348,17 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
                               break;
                          case VcsEvents.VCS_RESULT_OPERATION_CANCELED:
                               break;
+                         case VcsEvents.VCS_RESULT_USER_VERIFICATION_FAILED:
+                              str = CB_AUTHENTICATED + ":" + 0;
+                              break;     
+                         case VcsEvents.VCS_RESULT_USER_FINGER_ALREADY_ENROLLED:
                          default:
                               str = CB_ERROR + ":" + 2; //FINGERPRINT_ERROR_UNABLE_TO_PROCESS
                      }
+                     break;
+                case VcsEvents.VCS_RESULT_USER_VERIFICATION_FAILED:
+                     mIsIdentify = false;
+                     str = CB_AUTHENTICATED + ":" + 0;
                      break;
                 default:
                      VLog.v("identify onEvent: No need to process event :" + event.eventId);
@@ -373,8 +391,9 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
     }
 
     public void onScreenOff() {
+        mIsNeedIdentify = true;
         if (mIsIdentify) {
-            mIsNeedIdentify = true;
+            //fp.cancel();
         }
     }
 
