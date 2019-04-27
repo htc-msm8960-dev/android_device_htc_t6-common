@@ -21,6 +21,7 @@ package com.validity.fingerprint;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.UserHandle;
 import android.util.Log;
 
 public class ValidityServiceStarter extends Application {
@@ -30,7 +31,8 @@ public class ValidityServiceStarter extends Application {
         super.onCreate();
         VLog.v("onCreate");
         Intent serviceintent = new Intent(this, ValidityService.class);
-        startService(serviceintent);
+        //startService(serviceintent);
+        startServiceAsUser(serviceintent, new UserHandle(UserHandle.USER_CURRENT));
     }
 
 }
