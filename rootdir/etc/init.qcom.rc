@@ -196,6 +196,9 @@ on post-fs-data
     mkdir /data/secure 0755 system system
     symlink /mnt/secdata /data/secure/data
 
+    mkdir /data/media 0770 media_rw media_rw
+    mkdir /data/media/obb 0770 media_rw media_rw
+
     # Tombstones
     mkdir /data/tombstones 0771 system system
     symlink /data/tombstones /tombstones
@@ -232,6 +235,12 @@ on post-fs-data
     # won't work.
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
+
+    # Create directory used by media clients
+    mkdir /data/vendor/media 0770 mediacodec media
+
+    #Create a folder for SRS to be able to create a usercfg file
+    mkdir /data/data/media 0770 media media
 
 on boot
     mkdir /dev/socket/qmux_radio 0770 radio radio
