@@ -8,7 +8,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.speaker=true \
     persist.audio.fluence.voicecall=true \
     persist.audio.fluence.voicerec=false \
+    persist.vendor.audio.fluence.voicecall=true \
+    persist.vendor.audio.fluence.voicerec=false \
+    persist.vendor.audio.fluence.speaker=true \
     ro.qc.sdk.audio.fluencetype=fluence \
+    ro.vendor.audio.sdk.fluencetype=fluence
     use.dedicated.device.for.voip=true \
     use.voice.path.for.pcm.voip=true
 
