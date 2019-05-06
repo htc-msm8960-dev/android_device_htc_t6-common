@@ -412,6 +412,7 @@ service vcsFPService /vendor/bin/vcsFPService
     class late_start
     user root
     group system input wakelock readproc
+    disabled
 
 # WiFi
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
