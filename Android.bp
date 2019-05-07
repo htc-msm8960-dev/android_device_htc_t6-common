@@ -1,3 +1,5 @@
 subdirs = [
     "camera",
+    "camera/device",
+    "camera/provider",
 ]
