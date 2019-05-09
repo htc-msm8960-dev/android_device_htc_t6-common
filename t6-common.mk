@@ -96,9 +96,9 @@ WITH_LINEAGE_CHARGER := true
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl
 
-# Gello
+# Jelly
 PRODUCT_PACKAGES += \
-    Gello
+    Jelly
 
 # GPS
 PRODUCT_PACKAGES += \
