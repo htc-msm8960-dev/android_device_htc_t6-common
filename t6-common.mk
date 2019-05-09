@@ -152,10 +152,6 @@ PRODUCT_PACKAGES += \
     keystore.msm8960 \
     android.hardware.keymaster@3.0-impl
 
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-legacymm
-
 # Log
 PRODUCT_PACKAGES += \
     liblog_shim
