@@ -114,10 +114,6 @@ PRODUCT_PACKAGES += \
     fingerpintd \
     libC
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8960 \
