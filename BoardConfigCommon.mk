@@ -149,7 +149,8 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib/liblog.so|liblog_shim.so \
     /system/vendor/lib/libril.so|libshims_ril.so \
     /system/vendor/lib/libril-qc-qmi-1.so|libshims_ril.so \
-    /system/lib/libril-qc-qmi-1.so|libshims_ril.so
+    /system/lib/libril-qc-qmi-1.so|libshims_ril.so \
+    /system/vendor/lib/libqc-opt.so|libshim_qcopt.so
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools

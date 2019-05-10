@@ -184,7 +184,8 @@ PRODUCT_COPY_FILES += \
 
 # Perf
 PRODUCT_PACKAGES += \
-    libshims_atomic
+    libshims_atomic \
+    libshim_qcopt
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
