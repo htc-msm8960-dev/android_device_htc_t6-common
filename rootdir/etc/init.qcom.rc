@@ -159,6 +159,7 @@ on init
     chown root system /sys/class/timed_output/vibrator/voltage_level
     chmod 0664 /sys/class/timed_output/vibrator/voltage_level
     restorecon /sys/class/timed_output/vibrator/voltage_level
+    write /sys/class/timed_output/vibrator/voltage_level 2399
 
     # Touchscreen
     chown system system /sys/class/leds/button-backlight/currents
