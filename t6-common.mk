@@ -27,20 +27,10 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     $(LOCAL_PATH)/configs/com.htc.software.market.xml:system/etc/permissions/com.htc.software.market.xml \
     $(LOCAL_PATH)/configs/res_ctrl.conf:system/etc/res_ctrl.conf
-
-# Seccomp policy
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
-    $(LOCAL_PATH)/seccomp_policy/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -59,45 +49,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=2m \
     dalvik.vm.heapmaxfree=8m
 
-# Audio
-PRODUCT_PACKAGES += \
-    audio_amplifier.msm8960
-
-# Audio HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl \
-    android.hardware.soundtrigger@2.0-impl
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
-
-# Bluetooth HAL
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    libbt-vendor
-
-# Bionic Shim
-PRODUCT_PACKAGES += \
-    libshims_bionic
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.msm8960 \
-    Footej \
-    libcamera_shim
-
-# Camera HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl-t6 \
-    camera.device@1.0-impl-t6
-
-# Camera External Config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 # Charger
 WITH_LINEAGE_CHARGER := true
@@ -114,24 +70,6 @@ PRODUCT_PACKAGES += \
     fingerpintd \
     libC
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8960 \
-    libloc_eng
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
-
-# GNSS HAL
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
-    android.hardware.gnss@1.0-service
-
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service
-
 # IDC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
@@ -146,34 +84,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/max1187x_touchscreen_0.kl:system/usr/keylayout/max1187x_touchscreen_0.kl \
     $(LOCAL_PATH)/keylayout/Validity_Navigation_Sensor.kl:system/usr/keylayout/Validity_Navigation_Sensor.kl
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    keystore.msm8960 \
-    android.hardware.keymaster@3.0-impl
-
-# Log
-PRODUCT_PACKAGES += \
-    liblog_shim
-
-# Media
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
-
-# NFC HAL
-PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl
-
-# NFC
-PRODUCT_PACKAGES += \
-    nfc.msm8960 \
-    libnfc \
-    libnfc_ndef \
-    libnfc_jni \
-    libpn544_fw \
-    Nfc \
-    Tag \
-    com.android.nfc_extras
-
 ifeq ($(TARGET_BUILD_VARIANT),user)
     NFCEE_ACCESS_PATH := device/htc/t6-common/configs/nfcee_access.xml
 else
@@ -182,11 +92,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
-# Perf
-PRODUCT_PACKAGES += \
-    libshims_atomic \
-    libshim_qcopt
-
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/vendor/etc/init.qcom.bt.sh
@@ -194,11 +99,6 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:system/vendor/etc/sensors/_hals.conf
-
-# Sensors HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl.htc8960 \
-    android.hardware.sensors@1.0-service.htc8960
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -210,19 +110,6 @@ PRODUCT_PACKAGES += \
     loggy.sh \
     ueventd.qcom.rc
 
-# USB HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.basic \
-    com.android.future.usb.accessory
-
-# RIL
-PRODUCT_PACKAGES += \
-    libshims_ril \
-    qti-telephony-common
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
@@ -231,18 +118,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl
 
-# Voice processing
-PRODUCT_PACKAGES += \
-    libqcomvoiceprocessing
-
 # WiFi
 PRODUCT_PACKAGES += \
     libwcnss_qmi \
     wcnss_service \
-
-# WiFi HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_cfg.dat \
