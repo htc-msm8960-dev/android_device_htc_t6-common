@@ -36,11 +36,7 @@ ifneq ($(filter t6,$(TARGET_DEVICE)),)
 FIRMWARE_MDM_IMAGES += \
     htc61.mbn htc62.mbn htc63.mbn htc64.mbn htc65.mbn \
     htcnvbak.mbn htcrcust.mbn htcsmem.mbn \
-    sbl1_82.mbn sbl1_92.mbn sbl1_96.mbn
-endif
-
-ifneq ($(filter t6spr t6vzw,$(TARGET_DEVICE)),)
-FIRMWARE_MDM_IMAGES += \
+    sbl1_82.mbn sbl1_92.mbn sbl1_96.mbn \
     htccnv.mbn htcnvmfg.mbn htcuserd.mbn
 endif
 

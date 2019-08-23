@@ -29,8 +29,6 @@
 
 LOCAL_PATH := device/htc/t6-common
 
-TARGET_SPECIFIC_HEADER_PATH += device/htc/t6-common/include
-
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_IMAGE_NAME := zImage
@@ -42,12 +40,6 @@ TARGET_KERNEL_CONFIG := t6_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 TARGET_USES_EARLY_SUSPEND := true
 
-TARGET_NEEDS_GCC_LIBC := true
-
-# Audio
-BOARD_HAVE_HTC_CSDCLIENT := true
-USE_CUSTOM_AUDIO_POLICY := 1
-
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -56,25 +48,9 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
 
-# Camera
-TARGET_DISPLAY_INSECURE_MM_HEAP := true
-USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_USES_MEDIA_EXTENSIONS := true
-TARGET_USES_NON_TREBLE_CAMERA := true
-TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := camera_parameters_htc_msm8960
-
-TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-    /system/bin/mm-qcamera-daemon=21 \
-    /system/bin/qseecomd=21 \
-    /system/vendor/bin/hw/android.hardware.sensors@1.0-service.htc8960=21 \
-    /system/vendor/bin/hw/android.hardware.media.omx@1.0-service=21 \
-    /system/vendor/bin/hw/rild=27 \
-    /system/bin/audioserver=21 \
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/vendor/bin/vcsFPService=21 \
     /system/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service=21
-
-# Charge mode
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
@@ -88,9 +64,6 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2550136832
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
 
-# Extended Filesystem Support
-TARGET_EXFAT_DRIVER := sdfat
-
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAVE_QCOM_FM := true
@@ -100,24 +73,8 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 HAVE_ADRENO_SOURCE := false
 
-# GPS
-USE_DEVICE_SPECIFIC_GPS := true
-
 # HIDL
-DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
-
-# Keymaster
-TARGET_KEYMASTER_SKIP_WAITING_FOR_QSEE := true
-
-# Dexpreopt
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-    endif
-  endif
-endif
+DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/manifest.xml
 
 # Recovery
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
@@ -129,25 +86,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 LZMA_RAMDISK_TARGETS := recovery
 
-# Network Routing
-TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
-
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
-
-# Shims
-TARGET_LD_SHIM_LIBS := \
-    /system/bin/mpdecision|libshims_atomic.so \
-    /system/vendor/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so \
-    /system/lib/liblog.so|liblog_shim.so \
-    /system/vendor/lib/libril.so|libshims_ril.so \
-    /system/vendor/lib/libril-qc-qmi-1.so|libshims_ril.so \
-    /system/lib/libril-qc-qmi-1.so|libshims_ril.so \
-    /system/vendor/lib/libqc-opt.so|libshim_qcopt.so
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools
