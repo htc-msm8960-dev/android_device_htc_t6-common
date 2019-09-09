@@ -213,6 +213,8 @@ on post-fs-data
     mkdir /tombstones/wcnss 0771 system system
     mkdir /tombstones/dsps 0771 system system
 
+    mkdir /dev/socket/mpdecision 2770 root system
+
     # QC audio/radio
     mkdir /data/audio 0775 media audio
     chmod 2775 /data/audio
@@ -232,6 +234,10 @@ on post-fs-data
     setprop ro.product.wireless WCN3660
 
     setprop qcom.audio.init complete
+
+    # Create directories for perfd
+    mkdir /data/misc/perfd 2755 root system
+    mkdir /data/system/perfd 2770 root system
 
     # If there is no fs-post-data action in the init.<device>.rc file, you
     # must uncomment this line, otherwise encrypted filesystems
@@ -425,7 +431,7 @@ service qseecomd /system/bin/qseecomd
     user root
     group root
 
-service thermald /system/bin/thermald
+service thermal-engine /vendor/bin/thermal-engine
     class main
     user root
     group root
