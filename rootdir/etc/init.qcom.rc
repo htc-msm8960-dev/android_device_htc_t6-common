@@ -166,9 +166,6 @@ on init
 
 # On emmc mount the partition containing firmware
 on fs
-    # For firmwares
-    mkdir /vendor/firmware 0771 system system
-
     mount_all ./fstab.qcom
 
     mkdir /mnt/qcks 0700 root system
@@ -198,7 +195,6 @@ on post-fs-data
 
     # Tombstones
     mkdir /data/tombstones 0771 system system
-    symlink /data/tombstones /tombstones
     mkdir /tombstones/mdm 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system

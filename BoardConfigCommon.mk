@@ -79,9 +79,16 @@ USE_DEVICE_SPECIFIC_GPS := true
 # HIDL
 DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/manifest.xml
 
-BOARD_ROOT_EXTRA_FOLDERS := devlog ramdump persist
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /vendor/firmware_mnt:/firmware
+BOARD_ROOT_EXTRA_FOLDERS := \
+    firmware/q6 \
+    firmware/mdm \
+    firmware/wcnss
+
+BOARD_ROOT_EXTRA_SYMLINKS += \
+    /data/tombstones:/tombstones \
+    /data/persist:/persist \
+    /data/ramdump:/ramdump \
+    /data/devlog:/devlog
 
 # Recovery
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
