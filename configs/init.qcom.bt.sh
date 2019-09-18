@@ -1,4 +1,4 @@
-#!/vendor/bin/sh
+#!/system/bin/sh
 # Copyright (c) 2009-2011, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
