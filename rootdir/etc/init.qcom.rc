@@ -386,7 +386,7 @@ service cir_fw_update /system/bin/cir_fw_update -u cir.img
 service fm_dl /system/bin/setprop hw.fm.init 1
     class late_start
     user root
-    group system fm_radio
+    group system
     disabled
     oneshot
 
@@ -397,7 +397,7 @@ service netmgrd /system/bin/netmgrd
 
 service hciattach /system/bin/sh /system/vendor/etc/init.qcom.bt.sh
     user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin system
+    group bluetooth net_bt_admin system
     disabled
     seclabel u:r:bluetooth_loader:s0
     oneshot
@@ -448,7 +448,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 service wcnss-service /system/bin/wcnss_service
     class main
     user system
-    group system wifi qcom_diag radio
+    group system wifi radio
     oneshot
 
 ## Properties start here
