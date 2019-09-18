@@ -79,6 +79,10 @@ USE_DEVICE_SPECIFIC_GPS := true
 # HIDL
 DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/manifest.xml
 
+BOARD_ROOT_EXTRA_FOLDERS := devlog ramdump persist
+BOARD_ROOT_EXTRA_SYMLINKS := \
+    /vendor/firmware_mnt:/firmware
+
 # Recovery
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
 BOARD_NO_SECURE_DISCARD := true
@@ -92,6 +96,7 @@ LZMA_RAMDISK_TARGETS := recovery
 # SELinux
 #include device/qcom/sepolicy-legacy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy-minimal
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools
