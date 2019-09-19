@@ -63,7 +63,8 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service \
     fingerprint.msm8960 \
     ValidityService \
-    fingerpintd
+    fingerpintd \
+    libC
 
 # GPS
 PRODUCT_PACKAGES += \
