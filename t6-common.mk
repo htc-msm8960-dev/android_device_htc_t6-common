@@ -32,6 +32,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/com.htc.software.market.xml:system/etc/permissions/com.htc.software.market.xml \
     $(LOCAL_PATH)/configs/res_ctrl.conf:system/etc/res_ctrl.conf
 
+# Priv-app permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/privapp-permissions-t6.xml:system/etc/permissions/privapp-permissions-t6.xml
+
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
