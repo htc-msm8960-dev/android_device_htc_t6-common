@@ -409,7 +409,6 @@ public class ValidityService extends Service implements FingerprintCore.EventLis
         mIsScreenOn = false;
         if (mIsIdentify) {
             mIsNeedIdentify = true;
-            fp.cancel();
         }
     }
 
