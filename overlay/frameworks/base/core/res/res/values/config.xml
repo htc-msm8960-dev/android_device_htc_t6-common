@@ -244,6 +244,8 @@
         <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
     </string-array>
 
-    <!-- Whether to post reset runnable for all clients -->
-    <bool name="config_postResetRunnableForAllClients">true</bool>
+    <!-- Whether to post reset runnable for all clients. Needed for some older </resources>
+         vendor fingerprint HAL implementations. -->
+    <bool name="config_fingerprintPostResetRunnableForAllClients">true</bool>
+
 </resources>
