@@ -1,7 +1,3 @@
-# Network utilities (radio process)
-type netmgrd, domain;
-type netmgrd_exec, exec_type, file_type;
-
 # Started by init
 init_daemon_domain(netmgrd)
 
@@ -19,6 +15,20 @@ dontaudit netmgrd self:capability sys_module;
 allow netmgrd self:netlink_socket create_socket_perms_no_ioctl;
 allow netmgrd self:netlink_route_socket nlmsg_write;
 allow netmgrd self:packet_socket create_socket_perms_no_ioctl;
+allow netmgrd net_radio_prop:property_service set;
+allow netmgrd proc_net:dir r_dir_perms;
+allow netmgrd proc_net:file r_file_perms;
+allow netmgrd radio_prop:property_service set;
+allow netmgrd self:capability { setuid setgid net_admin net_raw };
+allow netmgrd self:packet_socket { create read write bind };
+allow netmgrd self:rawip_socket create_socket_perms;
+allow netmgrd self:udp_socket { create ioctl };
+allow netmgrd shell_exec:file rx_file_perms;
+allow netmgrd system_file:file rx_file_perms;
+
+auditallow netmgrd radio_prop:property_service set;
+dontaudit netmgrd self:capability sys_module;
+unix_socket_connect(netmgrd, property, init)
 
 # set net.rmnet* properties.
 set_prop(netmgrd, radio_prop)
