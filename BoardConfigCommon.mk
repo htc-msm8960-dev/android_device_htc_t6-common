@@ -101,8 +101,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
-BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy-minimal
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy/vendor
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(LOCAL_PATH)/sepolicy/private
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(LOCAL_PATH)/sepolicy/public
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/t6-common/releasetools
