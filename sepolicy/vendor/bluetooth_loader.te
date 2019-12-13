@@ -1,0 +1,15 @@
+# Run init.qcom.bt.sh
+allow bluetooth_loader shell_exec:file { rw_file_perms entrypoint };
+allow bluetooth_loader bluetooth_loader_exec:file { getattr open execute_no_trans };
+
+set_prop(bluetooth_loader, bluetooth_prop)
+
+r_dir_file(bluetooth_loader, persist_file)
+r_dir_file(bluetooth_loader, persist_bluetooth_file)
+allow bluetooth_loader smd_device:chr_file rw_file_perms;
+allow bluetooth_loader sysfs_bluetooth_writable:file r_file_perms;
+allow bluetooth_loader system_file:file execute_no_trans;
+allow bluetooth_loader toolbox_exec:file rwx_file_perms;
+
+allow bluetooth_loader devpts:chr_file rwx_file_perms;
+allow bluetooth_loader sysfs:file rwx_file_perms;

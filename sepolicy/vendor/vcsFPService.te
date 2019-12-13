@@ -24,9 +24,7 @@ allow vcsFPService vcsFPService_device:chr_file { read write open ioctl };
 
 allow vcsFPService shell_exec:file { execute execute_no_trans read open getattr};
 allow system_app vcsFPService_device:dir search;
-allow system_app vcsFPService_device:file read;
-allow system_app vcsFPService_device:file open;
-allow system_app vcsFPService_device:file lock;
+allow system_app vcsFPService_device:file { rw_file_perms getattr lock };
 
 allow system_app vcsFPService_device:fifo_file { write open read lock};
 allow system_app system_server:process signull;
@@ -48,3 +46,7 @@ allow vcsFPService toolbox_exec:file { execute execute_no_trans read open getatt
 
 allow priv_app device:dir { open read write remove_name add_name search};
 allow priv_app vcsFPService_data_file:dir { open read write remove_name add_name search};
+
+allow vcsFPService self:capability { kill sys_nice };
+allow vcsFPService vcs_data_file:dir create_dir_perms;
+allow vcsFPService vcs_data_file:file { rw_file_perms getattr create };

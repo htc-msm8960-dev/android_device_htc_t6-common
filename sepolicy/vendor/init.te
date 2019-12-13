@@ -39,3 +39,7 @@ allow init tombstones_file:lnk_file read;
 allow init sysfs_cpu_boost:file rw_file_perms;
 allow init sysfs_mpdecision:file rw_file_perms;
 allow init sysfs_thermal:file rw_file_perms;
+allow init self:netlink_kobject_uevent_socket { bind create write read setopt getopt};
+allow init sysfs_wlan_fwpath:file { rw_file_perms setattr };
+allow init system_file:dir relabelfrom;
+allow init vcsFPService_device:chr_file { rw_file_perms getattr };
