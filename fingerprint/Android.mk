@@ -21,7 +21,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := fingerprint.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_SRC_FILES := fingerprint.c
+LOCAL_SRC_FILES := HAL/fingerprint.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true
