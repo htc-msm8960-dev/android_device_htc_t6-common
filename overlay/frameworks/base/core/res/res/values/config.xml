@@ -180,7 +180,7 @@
          * The remote submix module "audio.r_submix.default" must be installed on the device.
          * The device must be provisioned with HDCP keys (for protected content).
     -->
-    <bool name="config_enableWifiDisplay">false</bool>
+    <bool name="config_enableWifiDisplay">true</bool>
 
     <!-- SD card is hot-pluggable on this device -->
     <bool name="config_batterySdCardAccessibility">true</bool>
