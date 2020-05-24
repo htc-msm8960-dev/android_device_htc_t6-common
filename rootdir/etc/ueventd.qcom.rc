@@ -153,7 +153,7 @@
 /dev/akm8963_dev          0660  system       system
 
 # keystore
-/dev/qseecom              0660  system       drmrpc
+/dev/qseecom              0666  system       drmrpc
 /dev/qce                  0660  system       drmrpc
 
 # Fingerprint
