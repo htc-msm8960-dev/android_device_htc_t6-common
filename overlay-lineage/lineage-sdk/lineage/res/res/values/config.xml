@@ -69,4 +69,7 @@
     <!-- Whether to post reset runnable for all clients. Needed for some older </resources>
          vendor fingerprint HAL implementations. -->
     <bool name="config_fingerprintPostResetRunnableForAllClients">true</bool>
+
+    <!-- Button backlight -->
+    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
 </resources>
