@@ -209,6 +209,13 @@
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">true</bool>
 
+    <!-- Values for GPS configuration -->
+    <string-array translatable="false" name="config_gpsParameters">
+        <item>XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin</item>
+        <item>XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin</item>
+        <item>XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin</item>
+    </string-array>
+
 <!-- Whether device ignores the RSSNR signal implementation -->
     <bool name="config_ignoreRssnrSignalLevel">true</bool>
 
