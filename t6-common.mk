@@ -68,7 +68,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.0-service.t6 \
+    android.hardware.biometrics.fingerprint@2.1-service \
     fingerprint.msm8960 \
     ValidityService \
     fingerpintd \
