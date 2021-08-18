@@ -47,3 +47,4 @@ allow init gpu_device:chr_file rw_file_perms;
 allow init graphics_device:chr_file rw_file_perms;
 allow init hidl_base_hwservice:hwservice_manager add;
 allow init hwservicemanager:binder { call transfer };
+allow init sysfs_mmc_host:file rw_file_perms;
