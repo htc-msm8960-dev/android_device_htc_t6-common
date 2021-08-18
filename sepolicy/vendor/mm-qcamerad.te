@@ -6,6 +6,10 @@ allow mm-qcamerad system_data_file:dir { add_name remove_name write };
 allow mm-qcamerad system_data_file:sock_file { create setattr unlink };
 allow mm-qcamerad system_file:file execmod;
 allow mm-qcamerad vendor_file:file execmod;
+allow mm-qcamerad device:chr_file { ioctl open read write };
+allow mm-qcamerad sysfs:file { getattr open read write };
+allow mm-qcamerad system_data_root_file:sock_file unlink;
+allow mm-qcamerad system_lib_file:file execmod;
 
 allow mm-qcamerad { hal_graphics_allocator hal_camera_default }:fd use;
 
