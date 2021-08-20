@@ -9,6 +9,7 @@ allow system_server proc:file { getattr open read };
 allow system_server unlabeled:file { rw_file_perms unlink };
 allow system_server unlabeled:dir rw_dir_perms;
 allow system_server tombstones_file:dir rw_dir_perms;
+allow system_server hal_light_default:process signal;
 
 get_prop(system_server, exported_camera_prop);
 get_prop(system_server, userspace_reboot_config_prop);
